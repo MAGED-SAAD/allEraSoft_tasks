@@ -1,8 +1,11 @@
 
+
 import 'package:cubiterasoft/Task_6/massengerScreen.dart';
+import 'package:cubiterasoft/Task_6/welcomeScreen.dart';
 import 'package:cubiterasoft/testt/bloc/Counter_bloc/Counter_cubit.dart';
-import 'package:cubiterasoft/testt/bloc/counterScreen.dart';
 import 'package:flutter/material.dart';
+
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 
@@ -23,7 +26,8 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
-        home: massengerScreen(),
+        home:massengerScreen(),
+        //gridViewScreen(),
       ),
     );
   }
