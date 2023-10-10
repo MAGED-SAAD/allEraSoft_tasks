@@ -4,6 +4,8 @@ import 'Counter_states.dart';
 class Counter_cubit extends Cubit<Counter_states>{
 
   Counter_cubit():super(init_counter_state());
+
+
   int counter=0;
 
   static Counter_cubit get_object (context){
