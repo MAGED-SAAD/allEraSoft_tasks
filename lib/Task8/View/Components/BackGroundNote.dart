@@ -18,6 +18,7 @@ class BackGroundNote extends StatelessWidget{
   Widget build(BuildContext context) {
     // TODO: implement build
     return InkWell(
+      borderRadius: BorderRadius.circular(10),
       onTap:onTap,
       child: Ink(
         padding:const EdgeInsets.all(8),
@@ -26,7 +27,8 @@ class BackGroundNote extends StatelessWidget{
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           border: Border.all(
-              color:Bordercolor
+              color:Bordercolor,
+              width: 2
           ),
         ),
 

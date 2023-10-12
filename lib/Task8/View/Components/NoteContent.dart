@@ -3,7 +3,7 @@
 import 'package:cubiterasoft/Task8/View/Components/ShowTime.dart';
 import 'package:cubiterasoft/Task8/View/Components/myText.dart';
 
-import 'package:cubiterasoft/Task8/View_Model/Utils/appColors.dart';
+import 'package:cubiterasoft/Task8/View_Model/Utils/Utils/appColors.dart';
 import 'package:flutter/material.dart';
 
 class NoteContent extends StatelessWidget{
@@ -43,9 +43,9 @@ class NoteContent extends StatelessWidget{
             child: myText(
 
               text: subtitle??"This is the Descreption lal aldacac vfevelfv fvefvl xfghcf hghgfhcfh hfgfhcgchcychc htxtxgfhxgf xxxxxxxxxxx dacdcacdscascvv dcvsacCVvv  svsvcdsv",
-              fontWeight: FontWeight.bold,
+              
               fontSize: 16,
-              color: AppColors.whitee,
+              color: AppColors.lite_white,
               maxliness: 3,
               textOverflow: TextOverflow.ellipsis,
             ),
@@ -58,14 +58,22 @@ class NoteContent extends StatelessWidget{
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              ShowTime(
-                Iconn: Icons.watch_outlined,
-                time: starttime??"20-04-2023",
+              Expanded(
+                child: ShowTime(
+                  color: AppColors.green,
+                  Iconn: Icons.watch_outlined,
+                  time: starttime??"20-04-2023",
+                ),
               ),
 
-              ShowTime(
-                Iconn: Icons.watch_off_outlined,
-                time: endtime??"20-06-2023",
+              const SizedBox(width: 15,),
+
+              Expanded(
+                child: ShowTime(
+                  color: AppColors.red,
+                  Iconn: Icons.watch_off_outlined,
+                  time: endtime??"20-06-2023",
+                ),
               ),
           ],),
         )

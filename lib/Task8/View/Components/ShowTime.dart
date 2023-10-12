@@ -1,17 +1,17 @@
-
-
 import 'package:cubiterasoft/Task8/View/Components/myText.dart';
-import 'package:cubiterasoft/Task8/View_Model/Utils/appColors.dart';
+import 'package:cubiterasoft/Task8/View_Model/Utils/Utils/appColors.dart';
 import 'package:flutter/material.dart';
 
-class ShowTime extends StatelessWidget{
+class ShowTime extends StatelessWidget {
   final IconData Iconn;
   final String time;
+  final Color color;
 
   const ShowTime({
     super.key,
     required this.time,
     required this.Iconn,
+    required this.color
   });
 
   @override
@@ -24,14 +24,24 @@ class ShowTime extends StatelessWidget{
       ),
       child: Padding(
         padding: const EdgeInsets.all(10),
-        child: Row(
+        child: FittedBox(
+          fit: BoxFit.scaleDown,
+          child: Row(
             children: [
-              Icon(Iconn,color: AppColors.whitee,),
-              const SizedBox(width: 8,),
-              myText(text: time,color: AppColors.whitee,)
-        ]),
+            Icon(
+              Iconn,
+              color: color,
+            ),
+            const SizedBox(
+              width: 8,
+            ),
+            myText(
+              text: time,
+              color: AppColors.whitee,
+            )
+          ]),
+        ),
       ),
     );
   }
-
 }

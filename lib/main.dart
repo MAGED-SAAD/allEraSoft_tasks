@@ -1,10 +1,11 @@
 
 
 import 'package:cubiterasoft/Task8/View/Screens/viewNotes.dart';
-import 'package:cubiterasoft/Task_6/massengerScreen.dart';
-import 'package:cubiterasoft/Task_6/welcomeScreen.dart';
+import 'package:cubiterasoft/Task8/View_Model/Utils/bloc/NoteCubit.dart';
+//import 'package:cubiterasoft/Task_6/massengerScreen.dart';
+//import 'package:cubiterasoft/Task_6/welcomeScreen.dart';
 import 'package:cubiterasoft/testt/bloc/Counter_bloc/Counter_cubit.dart';
-import 'package:cubiterasoft/testt/bloc/counterScreen.dart';
+//import 'package:cubiterasoft/testt/bloc/counterScreen.dart';
 import 'package:flutter/material.dart';
 
 
@@ -25,9 +26,10 @@ class MyApp extends StatelessWidget {
 
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => Counter_cubit())
+        BlocProvider(create: (context) => Counter_cubit()),
+        BlocProvider(create: (context)=>NoteCubit())
       ],
-      child: MaterialApp(
+      child: const MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         home:viewNotes(),
