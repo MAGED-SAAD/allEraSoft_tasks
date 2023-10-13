@@ -15,34 +15,24 @@ class NoteCubit extends Cubit<NoteStates> {
 
   void editNote(
       {required int index, required String title, required String SubTitle}) {
-    if (index == -1) {
-      if (title == "" || SubTitle == "") {
-        emit(WrongAction());
-        print("Wrong Action");
-      } else {
-        Notes.add(NoteModel(
-            title: title,
-            subTitle: SubTitle,
-            dateFrom: "2023-10-7",
-            dateTo: "2023-10-8"));
-        emit(AddNote());
-      }
-    } else {
-      Notes[index].title = title;
-      Notes[index].subTitle = SubTitle;
-      print(Notes);
-      emit(EditNote());
-    }
+
+        print("Edit Note cubit method");
+        Notes[index].title = title;
+        Notes[index].subTitle = SubTitle;
+        emit(EditNote());
+    
   }
 
-  void addNote({required String title, required String SubTitle}) {
-    if (title == "" || SubTitle == "") {
-      emit(WrongAction());
-      print("Wrong Action");
+  void addNote({required String title, required String subTitle}) {
+    if (title == "" || subTitle == "") {
+      print("Wrong Action empty text while adding new note");
+
+      emit( WrongAction() );
+      
     } else {
       Notes.add(NoteModel(
           title: title,
-          subTitle: SubTitle,
+          subTitle: subTitle,
           dateFrom: "2023-10-7",
           dateTo: "2023-10-8"));
     }
@@ -53,7 +43,7 @@ class NoteCubit extends Cubit<NoteStates> {
   void deleteNote({
     required int index,
   }) {
-    if (index != -1) {
+    if (index != null) {
       Notes.remove(Notes[index]);
       emit(DeleteNote());
     } else {

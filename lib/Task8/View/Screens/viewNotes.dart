@@ -24,7 +24,7 @@ class viewNotes extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: AppColors.appBarBackground,
         title: const myText(
-          text: "Note App",
+          text: "Note ToDo App",
           color: AppColors.whitee,
           fontWeight: FontWeight.bold,
         ),
@@ -38,10 +38,7 @@ class viewNotes extends StatelessWidget {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => CreateNote(
-                      displayNote: NoteModel(
-                          title: "", subTitle: "", dateFrom: "", dateTo: ""),
-                      objectIndex: -1),
+                  builder: (context) => CreateNote.NewNote()
                 ));
           },
           icon: const Icon(
@@ -79,7 +76,7 @@ class viewNotes extends StatelessWidget {
                       content: Text(
                         " Note Eddited Successfully !",
                         style: TextStyle(
-                            color: AppColors.appBarBackground,
+                            color: Color.fromARGB(60, 0, 0, 255),
                             fontWeight: FontWeight.bold),
                       ),
                       //"This Email didn't Sign up Yet"),
@@ -116,7 +113,7 @@ class viewNotes extends StatelessWidget {
                     ));
                   }
 
-                  print(State);
+                  
                 },
               ),
             ],

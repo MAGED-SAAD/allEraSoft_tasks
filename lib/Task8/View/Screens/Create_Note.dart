@@ -8,17 +8,21 @@ import '../../View_Model/Utils/Utils/appColors.dart';
 import '../Components/Second_Screen/View_Full_Title_AndSub.dart';
 
 class CreateNote extends StatelessWidget {
-  final NoteModel displayNote;
-  final int objectIndex;
+  NoteModel? displayNote;
+  int? objectIndex;
   TextEditingController titleCont = TextEditingController();
   TextEditingController subTitleCont = TextEditingController();
 
+  CreateNote.NewNote({super.key});
   CreateNote({super.key, required this.displayNote, required this.objectIndex});
 
   @override
   Widget build(BuildContext context) {
-    titleCont.text = displayNote.title;
-    subTitleCont.text = displayNote.subTitle;
+    if(objectIndex!=null){
+      titleCont.text = displayNote!.title;
+      subTitleCont.text = displayNote!.subTitle;
+    }
+
 
     return Scaffold(
       backgroundColor: AppColors.Background,
@@ -40,17 +44,56 @@ class CreateNote extends StatelessWidget {
           ),
           View_Full_Title_AndSub(
               titleCont: titleCont, subTitleCont: subTitleCont),
+            /*
+              const SizedBox(height: 15,),
+             const myText(text: "select Status  Green:Done  blue:In Progress  Red:watting",color: AppColors.whitee,),
+            
+             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: 
+                  Container(
+                    width: 40,
+                    height: 40,
+                    decoration:  BoxDecoration(shape: BoxShape.circle,border: Border.all(color:AppColors.whitee )),
+                    child: Padding(
+                      padding: const EdgeInsets.all(5),
+                      child: Container(
+                        height: 30,
+                        width: 30,
+                        decoration: const BoxDecoration(shape: BoxShape.circle,color: AppColors.green),
+                      ),
+                    ),
+                  ),
+                )
+              ],
+             ),
+          */
           const Spacer(),
           Align(
             alignment: Alignment.center,
             child: Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
               child: InkWell(
                 borderRadius: BorderRadius.circular(15),
                 onTap: () {
-                  print("Done Save Note");
-                  NoteCubit.getObject(context).editNote(title: titleCont.text, SubTitle: subTitleCont.text,index: objectIndex);
+                  print("button clicked Save Note");
+                  if(titleCont.text!=""&&subTitleCont.text!=""){
+                    if(objectIndex!=null){
+                      Navigator.pop(context);
+                    NoteCubit.getObject(context).editNote(
+                      title: titleCont.text,
+                      SubTitle: subTitleCont.text,
+                      index: objectIndex!);
+                  }else{
+                    Navigator.pop(context);
+                    NoteCubit.getObject(context).addNote(title: titleCont.text, subTitle: subTitleCont.text);
+                  }
+                  }
+                  
+                  
                 },
                 child: Ink(
                   width: double.infinity,
@@ -73,13 +116,15 @@ class CreateNote extends StatelessWidget {
           Align(
             alignment: Alignment.center,
             child: Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: InkWell(
                 borderRadius: BorderRadius.circular(15),
                 onTap: () {
+                  if(objectIndex!=null){
+                    Navigator.pop(context);
+                    NoteCubit.getObject(context).deleteNote(index: objectIndex!);
+                  }
                   
-                  NoteCubit.getObject(context).deleteNote(index: objectIndex);
                 },
                 child: Ink(
                   width: double.infinity,
