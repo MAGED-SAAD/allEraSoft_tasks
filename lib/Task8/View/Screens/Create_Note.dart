@@ -44,10 +44,12 @@ class CreateNote extends StatelessWidget {
           ),
           View_Full_Title_AndSub(
               titleCont: titleCont, subTitleCont: subTitleCont),
-            /*
-              const SizedBox(height: 15,),
-             const myText(text: "select Status  Green:Done  blue:In Progress  Red:watting",color: AppColors.whitee,),
+              
             
+              const SizedBox(height: 15,),
+              
+             const myText(text: "select Status  Green:Done  blue:In Progress  Red:watting",color: AppColors.whitee,),
+            /*
              Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -57,14 +59,13 @@ class CreateNote extends StatelessWidget {
                   Container(
                     width: 40,
                     height: 40,
+                    padding: const EdgeInsets.all(5),
                     decoration:  BoxDecoration(shape: BoxShape.circle,border: Border.all(color:AppColors.whitee )),
-                    child: Padding(
-                      padding: const EdgeInsets.all(5),
-                      child: Container(
-                        height: 30,
-                        width: 30,
-                        decoration: const BoxDecoration(shape: BoxShape.circle,color: AppColors.green),
-                      ),
+                    
+                    child: Container(
+                      height: 30,
+                      width: 30,
+                      decoration: const BoxDecoration(shape: BoxShape.circle,color: AppColors.green),
                     ),
                   ),
                 )

@@ -44,7 +44,7 @@ class viewNotes extends StatelessWidget {
           icon: const Icon(
             Icons.add,
             color: AppColors.whitee,
-            size: 30,
+            
           ),
         ),
       ),
@@ -53,8 +53,10 @@ class viewNotes extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
           child: Column(
             children: [
+              
               BlocConsumer<NoteCubit, NoteStates>(
                 builder: (context, state) {
+                  
                   return Note_Builder();
                 },
                 listener: (context, state) {
