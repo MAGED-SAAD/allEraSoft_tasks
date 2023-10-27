@@ -2,6 +2,7 @@
 
 import 'package:cubiterasoft/Task8/View/Screens/viewNotes.dart';
 import 'package:cubiterasoft/Task8/View_Model/Utils/bloc/NoteCubit.dart';
+import 'package:cubiterasoft/Task8/View_Model/Utils/data/Local/SharedPref.dart';
 import 'package:cubiterasoft/Task_9/bloc/TaskCubit.dart';
 //import 'package:cubiterasoft/Task_6/massengerScreen.dart';
 //import 'package:cubiterasoft/Task_6/welcomeScreen.dart';
@@ -12,13 +13,22 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'Task_10/View/qouteScreen.dart';
 import 'Task_9/View/TaskScreen.dart';
 
 
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPref.init_SharedPref;
+  
   runApp(const MyApp());
 }
+
+
+
+
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -33,10 +43,10 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => Counter_cubit()),
         BlocProvider(create: (context)=>NoteCubit())
       ],
-      child: const MaterialApp(
+      child:  MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
-        home:TaskScreen(),
+        home:qouteScreen(),
         //gridViewScreen(),
       ),
     );
