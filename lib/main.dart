@@ -7,6 +7,7 @@ import 'package:cubiterasoft/Task_9/bloc/TaskCubit.dart';
 //import 'package:cubiterasoft/Task_6/massengerScreen.dart';
 //import 'package:cubiterasoft/Task_6/welcomeScreen.dart';
 import 'package:cubiterasoft/testt/bloc/Counter_bloc/Counter_cubit.dart';
+import 'package:cubiterasoft/testt/bloc/pdf/TestPdf.dart';
 //import 'package:cubiterasoft/testt/bloc/counterScreen.dart';
 import 'package:flutter/material.dart';
 
@@ -43,10 +44,10 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => Counter_cubit()),
         BlocProvider(create: (context)=>NoteCubit())
       ],
-      child:  MaterialApp(
+      child:  const MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
-        home:qouteScreen(),
+        home:TestPdf(),
         //gridViewScreen(),
       ),
     );
