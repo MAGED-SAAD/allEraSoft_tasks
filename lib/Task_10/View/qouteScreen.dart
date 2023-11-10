@@ -58,7 +58,7 @@ class _qouteScreenState extends State<qouteScreen> {
             )),
         child: Column(
           mainAxisSize: MainAxisSize.max,
-          crossAxisAlignment: CrossAxisAlignment.center,
+          
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             myText(
@@ -67,10 +67,12 @@ class _qouteScreenState extends State<qouteScreen> {
               color: const Color.fromARGB(202, 76, 175, 79),
               fontWeight: FontWeight.bold,
             ),
-            myText(
-                text: "${qouteModel.StaticQoute?.myqoute?.body}",
-                fontSize: 20,
-                color: Colors.black),
+            Center(
+              child: myText(
+                  text: "${qouteModel.StaticQoute?.myqoute?.body}",
+                  fontSize: 20,
+                  color: Colors.black),
+            ),
             myText(
                 text: "${qouteModel.StaticQoute?.myqoute?.author}",
                 fontSize: 15,
