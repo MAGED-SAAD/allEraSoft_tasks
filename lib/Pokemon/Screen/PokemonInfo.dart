@@ -51,12 +51,15 @@ class PokemonInfo extends StatelessWidget {
               children: [
                 Transform.translate(
                     offset: const Offset(0, -65),
-                    child: Image.network(PokemonCubit.getObject(context)
-                            .PokemonApi
-                            ?.pokemon![PokemonCubit.getObject(context)
-                                .currentSelectedIndex!]
-                            .img ??
-                        "https://upload.wikimedia.org/wikipedia/commons/4/47/PNG_transparency_demonstration_1.png")),
+                    child: Hero(
+                      tag: PokemonCubit.getObject(context).currentSelectedIndex.toString(),
+                      child: Image.network(PokemonCubit.getObject(context)
+                              .PokemonApi
+                              ?.pokemon![PokemonCubit.getObject(context)
+                                  .currentSelectedIndex!]
+                              .img ??
+                          "https://upload.wikimedia.org/wikipedia/commons/4/47/PNG_transparency_demonstration_1.png"),
+                    )),
                 Transform.translate(
                   offset: const Offset(0, -60),
                   child: myText(

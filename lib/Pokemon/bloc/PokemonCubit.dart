@@ -38,13 +38,8 @@ class PokemonCubit extends Cubit<PokemonCubitStates> {
 
     print('MMMMMMMMMMMMMMMMMMMMMMMM Api get_Acc_data MMMMMMMMMMMMMMMMMMMMMMMMMMMM');
     
-     DioHelper.get(endPoint: EndPoint).then((value) {
+     await DioHelper.get(endPoint: EndPoint).then((value) {
       Map<String, dynamic> valueMap = json.decode(value?.data);
-
-      //print(valueMap is String );
-      //print(value?.data[0] =="\"");
-      print(valueMap);
-
       PokemonApi = PokemonModel.fromJson(json:valueMap);
       emit(getPokemonSuccess());
     }).catchError((onError) {

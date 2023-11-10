@@ -1,15 +1,16 @@
 class PokemonModel {
-
   List<Pokemon>? pokemon;
-
 
   PokemonModel.fromJson({required Map<String, dynamic> json}) {
     print("*************goooooooooooooo*************");
     if (json['pokemon'] != null) {
       pokemon = <Pokemon>[];
-
+      int index = 20;
       json['pokemon'].forEach((v) {
-        pokemon!.add(Pokemon.fromJson(v));
+        if (index != 0) {
+          pokemon!.add(Pokemon.fromJson(v));
+          --index;
+        }
       });
     }
   }
@@ -56,7 +57,7 @@ class Pokemon {
 
   Pokemon.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    print("1 done XXXXXXXXXXXXXXXXXXXXXXXXXXxxx");
+    
     num = json['num'];
     name = json['name'];
     img = json['img'];
@@ -69,8 +70,8 @@ class Pokemon {
     spawnChance = json['spawn_chance'];
     avgSpawns = json['avg_spawns'];
     spawnTime = json['spawn_time'];
-     multipliers = json['multipliers'];
-     weaknesses = json['weaknesses'].cast<String>();
+    multipliers = json['multipliers'];
+    weaknesses = json['weaknesses'].cast<String>();
 
     if (json['next_evolution'] != null) {
       nextEvolution = <NextEvolution>[];

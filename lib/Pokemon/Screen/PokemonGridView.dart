@@ -15,7 +15,7 @@ class PokemonGridView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const myText(
-          text: "Poke App",
+          text: "Pokemon App",
           color: AppColors.whitee,
         ),
         centerTitle: true,
@@ -77,25 +77,35 @@ class PokemonGridView extends StatelessWidget {
                                   ),
                                 ],
                                 borderRadius: BorderRadius.circular(15),
-                                image: DecorationImage(
-                                  image: NetworkImage(PokemonCubit.getObject(
-                                              context)
-                                          .PokemonApi
-                                          ?.pokemon![index]
-                                          .img ??
-                                      "https://upload.wikimedia.org/wikipedia/commons/4/47/PNG_transparency_demonstration_1.png"),
-                                )),
+                                
+                                ),
                             padding: const EdgeInsets.all(10),
-                            child: Align(
-                                alignment: Alignment.bottomCenter,
-                                child: myText(
-                                  text: PokemonCubit.getObject(context)
-                                          .PokemonApi
-                                          ?.pokemon![index]
-                                          .name ??
-                                      "Un Known",
-                                  fontWeight: FontWeight.bold,
-                                ))),
+                            child: Column(
+                              children: [
+
+                                Expanded(child: 
+                                Hero(
+                                  tag: index.toString(),
+                                  child: Image.network(PokemonCubit.getObject(context)
+                                            .PokemonApi
+                                            ?.pokemon![index]
+                                            .img ??
+                                        ""),
+                                )
+                                ),
+
+                                Align(
+                                    alignment: Alignment.bottomCenter,
+                                    child: myText(
+                                      text: PokemonCubit.getObject(context)
+                                              .PokemonApi
+                                              ?.pokemon![index]
+                                              .name ??
+                                          "Un Known",
+                                      fontWeight: FontWeight.bold,
+                                    )),
+                              ],
+                            )),
                       );
                     },
                   ),
