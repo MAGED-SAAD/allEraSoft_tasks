@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../View_Model/Utils/Utils/appColors.dart';
+import '../../View_Model/Utils/Utils/appColors.dart';
 
 class View_Full_Title_AndSub extends StatelessWidget {
   const View_Full_Title_AndSub({
@@ -20,7 +20,7 @@ class View_Full_Title_AndSub extends StatelessWidget {
           children: [
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 0),
                 child: TextFormField(
                   controller: titleCont,
                   //initialValue:displayNote.title,
@@ -63,7 +63,7 @@ class View_Full_Title_AndSub extends StatelessWidget {
           children: [
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 0),
                 child: TextFormField(
                   keyboardType: TextInputType.multiline,
                   maxLines: null,

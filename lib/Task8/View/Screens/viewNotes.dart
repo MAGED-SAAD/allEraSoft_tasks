@@ -1,15 +1,14 @@
-import 'package:cubiterasoft/Task8/View/Components/BackGroundNote.dart';
-import 'package:cubiterasoft/Task8/View/Components/NoteContent.dart';
+
 import 'package:flutter/material.dart';
 import 'package:cubiterasoft/Task8/View_Model/Utils/Utils/appColors.dart';
 import 'package:cubiterasoft/Task8/View/Components/myText.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../Model/Note_Model.dart';
-import '../../View_Model/Utils/bloc/NoteCubit.dart';
-import '../../View_Model/Utils/bloc/NoteStates.dart';
+
+import '../../View_Model/Utils/bloc/Note/NoteCubit.dart';
+import '../../View_Model/Utils/bloc/Note/NoteStates.dart';
 import '../Components/Note_Builder.dart';
-import '../Components/Note_card_item.dart';
+
 import 'Create_Note.dart';
 
 class viewNotes extends StatelessWidget {
@@ -50,7 +49,7 @@ class viewNotes extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+          padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
           child: Column(
             children: [
               

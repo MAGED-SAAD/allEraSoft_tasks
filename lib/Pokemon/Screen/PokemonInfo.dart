@@ -70,7 +70,9 @@ class PokemonInfo extends StatelessWidget {
                             .name ??
                         "Un Known",
                     fontWeight: FontWeight.bold,
-                    fontSize: 20,
+                    fontSize: 22,
+                    letterSpacing: 5,
+                    
                   ),
                 ),
                
@@ -79,14 +81,14 @@ class PokemonInfo extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      myText(text: "Height: "),
+                      myText(text: "Height: ",fontSize: 18,fontWeight: FontWeight.w500),
                       myText(
                         text: PokemonCubit.getObject(context)
                                 .PokemonApi
                                 ?.pokemon![PokemonCubit.getObject(context)
                                     .currentSelectedIndex!]
                                 .height ??
-                            "Un Known",
+                            "Un Known",fontSize: 18,fontWeight: FontWeight.w400
                       ),
                     ],
                   ),
@@ -98,14 +100,14 @@ class PokemonInfo extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      myText(text: "Weight: "),
+                      myText(text: "Weight: ",fontSize: 18,fontWeight: FontWeight.w500),
                       myText(
                         text: PokemonCubit.getObject(context)
                                 .PokemonApi
                                 ?.pokemon![PokemonCubit.getObject(context)
                                     .currentSelectedIndex!]
                                 .weight ??
-                            "Un Known",
+                            "Un Known",fontSize: 18,fontWeight: FontWeight.w400
                       ),
                     ],
                   ),
@@ -113,10 +115,10 @@ class PokemonInfo extends StatelessWidget {
               const SizedBox(height: 15,),
                 
               const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 12),
+                  padding: EdgeInsets.symmetric(horizontal: 12,vertical: 5),
                   child: Align(
                     alignment: Alignment.topLeft,
-                    child: myText(text: "Types")),
+                    child: myText(text: "Types",fontSize: 18,fontWeight: FontWeight.w500)),
                 ),
                
                 Padding(
@@ -160,10 +162,10 @@ class PokemonInfo extends StatelessWidget {
                 const SizedBox(height: 15,),
 
                 const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 12),
+                  padding: EdgeInsets.symmetric(horizontal: 12,vertical: 5),
                   child: Align(
                     alignment: Alignment.topLeft,
-                    child: myText(text: "Weakness")),
+                    child: myText(text: "Weakness",fontSize: 18,fontWeight: FontWeight.w500)),
                 ),
                
                 Padding(

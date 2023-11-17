@@ -9,6 +9,7 @@ class myText extends StatelessWidget{
   final FontWeight? fontWeight;
   final TextOverflow? textOverflow ;
   final int? maxliness;
+  final double? letterSpacing;
 
    const myText({
     super.key,
@@ -17,7 +18,8 @@ class myText extends StatelessWidget{
     this.color,
     this.fontWeight,
     this.textOverflow,
-    this.maxliness
+    this.maxliness,
+    this.letterSpacing,
 });
 
   @override
@@ -31,6 +33,8 @@ class myText extends StatelessWidget{
         color: color,
         fontSize:fontSize,
         fontWeight: fontWeight,
+        letterSpacing: letterSpacing,
+        
 
       ),
     );

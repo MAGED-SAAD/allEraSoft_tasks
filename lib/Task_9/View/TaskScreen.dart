@@ -1,5 +1,5 @@
 import 'package:cubiterasoft/Task8/View/Components/myText.dart';
-import 'package:cubiterasoft/Task8/View_Model/Utils/bloc/NoteCubit.dart';
+import 'package:cubiterasoft/Task8/View_Model/Utils/bloc/Note/NoteCubit.dart';
 import 'package:cubiterasoft/Task_9/bloc/TaskCubit.dart';
 import 'package:cubiterasoft/Task_9/bloc/TaskCubitStates.dart';
 import 'package:flutter/material.dart';

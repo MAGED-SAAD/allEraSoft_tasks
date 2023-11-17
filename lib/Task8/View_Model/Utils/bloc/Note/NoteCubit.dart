@@ -1,9 +1,8 @@
-
 import 'package:bloc/bloc.dart';
-import 'package:cubiterasoft/Task8/View_Model/Utils/bloc/NoteStates.dart';
+import 'package:cubiterasoft/Task8/View_Model/Utils/bloc/Note/NoteStates.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../Model/Note_Model.dart';
+import '../../../../Model/Note_Model.dart';
 
 class NoteCubit extends Cubit<NoteStates> {
   NoteCubit() : super(InitState());
@@ -14,20 +13,17 @@ class NoteCubit extends Cubit<NoteStates> {
 
   void editNote(
       {required int index, required String title, required String SubTitle}) {
-
-        print("Edit Note cubit method");
-        Notes[index].title = title;
-        Notes[index].subTitle = SubTitle;
-        emit(EditNote());
-    
+    print("Edit Note cubit method");
+    Notes[index].title = title;
+    Notes[index].subTitle = SubTitle;
+    emit(EditNote());
   }
 
   void addNote({required String title, required String subTitle}) {
     if (title == "" || subTitle == "") {
       print("Wrong Action empty text while adding new note");
 
-      emit( WrongAction() );
-      
+      emit(WrongAction());
     } else {
       Notes.add(NoteModel(
           title: title,
@@ -48,6 +44,16 @@ class NoteCubit extends Cubit<NoteStates> {
     } else {
       print("Wrong Action");
       emit(WrongAction());
+    }
+  }
+
+  String? noteStatus;
+  
+  void NoteStatusPressed ({required String status}) {
+    if (noteStatus == status) {
+    } else {
+      noteStatus = status;
+      emit(ChangeNoteStatus());
     }
   }
 }

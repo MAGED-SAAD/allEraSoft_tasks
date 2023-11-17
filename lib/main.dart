@@ -3,9 +3,13 @@
 import 'package:cubiterasoft/Pokemon/Screen/PokemonGridView.dart';
 import 'package:cubiterasoft/Pokemon/bloc/PokemonCubit.dart';
 import 'package:cubiterasoft/Task8/Model/Note_Model.dart';
+import 'package:cubiterasoft/Task8/View/Screens/Login.dart';
+import 'package:cubiterasoft/Task8/View/Screens/Signup.dart';
 import 'package:cubiterasoft/Task8/View/Screens/viewNotes.dart';
 import 'package:cubiterasoft/Task8/View_Model/Utils/Utils/EndPoints.dart';
-import 'package:cubiterasoft/Task8/View_Model/Utils/bloc/NoteCubit.dart';
+import 'package:cubiterasoft/Task8/View_Model/Utils/bloc/Login/LoginCubit.dart';
+import 'package:cubiterasoft/Task8/View_Model/Utils/bloc/Note/NoteCubit.dart';
+import 'package:cubiterasoft/Task8/View_Model/Utils/bloc/Signup/SignupCubit.dart';
 import 'package:cubiterasoft/Task8/View_Model/Utils/data/Local/SharedPref.dart';
 import 'package:cubiterasoft/Task8/View_Model/Utils/data/Network/dioHelper.dart';
 import 'package:cubiterasoft/Task_9/bloc/TaskCubit.dart';
@@ -45,6 +49,8 @@ class MyApp extends StatelessWidget {
 
     return MultiBlocProvider(
       providers: [
+        BlocProvider(create: (context) => SignupCubit()),
+        BlocProvider(create: (context) => LoginCubit()),
         BlocProvider(create: (context) => TaskCubit()),
         BlocProvider(create: (context) => Counter_cubit()),
         BlocProvider(create: (context)=>NoteCubit()),
@@ -53,7 +59,7 @@ class MyApp extends StatelessWidget {
       child:  const MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
-        home: PokemonGridView(),
+        home: Login(),
         //gridViewScreen(),
       ),
     );

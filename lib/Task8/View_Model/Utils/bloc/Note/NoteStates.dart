@@ -5,3 +5,5 @@ class AddNote extends NoteStates{}
 class EditNote extends NoteStates{}
 class DeleteNote extends NoteStates{}
 class WrongAction extends NoteStates{}
+
+class ChangeNoteStatus extends NoteStates{}
