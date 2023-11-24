@@ -7,11 +7,12 @@ class DioHelper {
   static void init() {
     dio = Dio(
       BaseOptions(
+        baseUrl: EndPoints.todoBaseUrl,
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      baseUrl: EndPoints.todoBaseUrl,
+      //baseUrl: EndPoints.todoBaseUrl,
       //EndPoints.PokemonUrl,
       receiveDataWhenStatusError: true,
 //contentType: false

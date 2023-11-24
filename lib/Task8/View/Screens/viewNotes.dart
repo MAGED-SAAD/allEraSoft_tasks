@@ -1,4 +1,6 @@
 
+import 'package:cubiterasoft/Task8/View/Screens/Login.dart';
+import 'package:cubiterasoft/Task8/View_Model/Utils/data/Local/SharedPref.dart';
 import 'package:flutter/material.dart';
 import 'package:cubiterasoft/Task8/View_Model/Utils/Utils/appColors.dart';
 import 'package:cubiterasoft/Task8/View/Components/myText.dart';
@@ -9,7 +11,7 @@ import '../../View_Model/Utils/bloc/Note/NoteCubit.dart';
 import '../../View_Model/Utils/bloc/Note/NoteStates.dart';
 import '../Components/Note_Builder.dart';
 
-import 'Create_Note.dart';
+import 'CreateNote.dart';
 
 class viewNotes extends StatelessWidget {
   const viewNotes({super.key});
@@ -28,6 +30,19 @@ class viewNotes extends StatelessWidget {
           fontWeight: FontWeight.bold,
         ),
         centerTitle: true,
+
+        actions:  [
+          IconButton(
+            onPressed: () {
+              SharedPref.clearDataAll();
+              Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const Login(),
+            ));
+            },
+            icon: const Icon(Icons.logout,color: AppColors.whitee,))
+        ],
       ),
       floatingActionButton: CircleAvatar(
         radius: 30,

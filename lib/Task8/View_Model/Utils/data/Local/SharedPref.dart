@@ -1,43 +1,36 @@
-
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPref {
   static SharedPreferences? myObject;
 
-  static void init_SharedPref() async {
-    myObject = await SharedPreferences.getInstance();
+  static  init_SharedPref () async {
+     myObject = await SharedPreferences.getInstance();
   }
 
-  static void setData({required String key, required dynamic value}) {
+  static void setData({required String key, required dynamic value}) async{
     if (value is int) {
-      myObject?.setInt(key, value);
+      await myObject?.setInt(key, value);
     } else if (value is bool) {
-      myObject?.setBool(key, value);
+      await myObject?.setBool(key, value);
     } else if (value is String) {
-      myObject?.setString(key, value);
+      await myObject?.setString(key, value);
+      //print("save string done: Value:$value");
     } else if (value is double) {
-      myObject?.setDouble(key, value);
+      await myObject?.setDouble(key, value);
     } else if (value is List<String>) {
-      myObject?.setStringList(key, value);
+      await myObject?.setStringList(key, value);
     }
   }
 
   static dynamic getData({required String key}) {
-    return myObject?.get(key);
+    return  myObject!.get(key);
   }
 
-
-    static void removeData({required String key}) {
-     myObject?.remove(key);
+  static void removeData({required String key}) {
+    myObject?.remove(key);
   }
 
-
-
-
-      static void clearDataAll({required String key}) {
-     myObject?.clear();
+  static void clearDataAll() {
+    myObject?.clear();
   }
-
-
-
 }

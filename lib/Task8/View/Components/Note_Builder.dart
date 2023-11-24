@@ -4,7 +4,7 @@ import 'package:cubiterasoft/Task8/View/Components/myText.dart';
 import 'package:cubiterasoft/Task8/View_Model/Utils/Utils/appColors.dart';
 import 'package:flutter/material.dart';
 import '../../Model/Note_Model.dart';
-import '../Screens/Create_Note.dart';
+import '../Screens/CreateNote.dart';
 import 'Note_card_item.dart';
 
 class Note_Builder extends StatelessWidget {

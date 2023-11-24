@@ -1,5 +1,6 @@
 import 'package:cubiterasoft/Task8/View/Components/NoteStatusBuilder.dart';
 import 'package:cubiterasoft/Task8/View/Components/myText.dart';
+import 'package:cubiterasoft/Task8/View/Components/timePicker.dart';
 import 'package:cubiterasoft/Task8/View_Model/Utils/bloc/Note/NoteCubit.dart';
 import 'package:cubiterasoft/Task8/View_Model/Utils/bloc/Note/NoteStates.dart';
 import 'package:flutter/material.dart';
@@ -55,10 +56,23 @@ class CreateNote extends StatelessWidget {
             const SizedBox(
               height: 15,
             ),
+
+
+
+
+            timePicker(
+                timeFromCont: NoteCubit.getObject(context).timeFromcont, 
+                timeToCont: NoteCubit.getObject(context).timeTocont
+              ),
+
+            const SizedBox(
+                height: 15,
+            ),
+
           
             BlocBuilder<NoteCubit,NoteStates>(
               builder: (context, state) {
-                return NoteStatusBuilder();
+                return const NoteStatusBuilder();
               },
               ),
             

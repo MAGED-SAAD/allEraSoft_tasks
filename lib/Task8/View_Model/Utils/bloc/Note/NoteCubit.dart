@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:cubiterasoft/Task8/View_Model/Utils/bloc/Note/NoteStates.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../Model/Note_Model.dart';
@@ -7,9 +8,19 @@ import '../../../../Model/Note_Model.dart';
 class NoteCubit extends Cubit<NoteStates> {
   NoteCubit() : super(InitState());
 
+
+  final TextEditingController timeFromcont=TextEditingController();
+  final TextEditingController timeTocont=TextEditingController();
+
   static NoteCubit getObject(context) {
     return (BlocProvider.of<NoteCubit>(context));
   }
+
+
+
+
+
+
 
   void editNote(
       {required int index, required String title, required String SubTitle}) {

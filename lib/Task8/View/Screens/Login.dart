@@ -26,58 +26,65 @@ class Login extends StatelessWidget {
         ),
         child: Column(
           children: [
-
-            Container(
-              
-              width: 250,
-              height: 280,
-              decoration:const  BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(15)),
-                color: Color.fromARGB(112, 44, 44, 44),
-                image: DecorationImage(
-                  alignment: Alignment.topRight,
-                  image:NetworkImage("https://cdn-icons-png.flaticon.com/512/6194/6194029.png",)
-                )
-              ),
-              child: const Align(
-                alignment: Alignment.bottomCenter,
-                child:  Padding(
-                  padding: EdgeInsets.symmetric(vertical: 10),
-                  child: FittedBox(
-                    child: Text(
-                      
-                       "Dark ToDo App ",
-                       style: TextStyle(
-                        color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,wordSpacing: 10),),
-                  ),
+            Expanded(
+              child: ListView(
+                scrollDirection: Axis.vertical,
+                children: [
+                  Container(
+                
+                width: 250,
+                height: 280,
+                decoration:const  BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(15)),
+                  color: Color.fromARGB(112, 44, 44, 44),
+                  image: DecorationImage(
+                    alignment: Alignment.topRight,
+                    image:NetworkImage("https://cdn-icons-png.flaticon.com/512/6194/6194029.png",)
+                  )
                 ),
               ),
-            ),
 
-            const SizedBox(
-              height: 15,
-            ),
 
-            LoginTextform(emailCont: LoginCubit.getObject(context).emailCont, password: LoginCubit.getObject(context).passwordCont),
-
-              const RememberMe(),
-            const SizedBox(
-              height: 15,
-            ),
-
-              const Align(
-              alignment: Alignment.center,
-              child: myText(text: "Dont Have an Account ?",color: AppColors.lite_white,fontWeight: FontWeight.bold,)),
+              const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 10),
+                    child: FittedBox(
+                      child: Text(
+                        
+                         "Dark ToDo App",
+                         style: TextStyle(
+                          color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,wordSpacing: 10),),
+                    ),
+                ),
             
-
-            Align(
-              alignment: Alignment.center,
-              child:TextButton(
-                onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => SignupTodo(),));
-              }, child:const myText(text: "Sign Up",color: AppColors.whitee,fontWeight: FontWeight.bold,fontSize: 17,letterSpacing: 1,)),
+              const SizedBox(
+                height: 15,
+              ),
+            
+              LoginTextform(emailCont: LoginCubit.getObject(context).emailCont, password: LoginCubit.getObject(context).passwordCont),
+            
+                const RememberMe(),
+              const SizedBox(
+                height: 15,
+              ),
+            
+                const Align(
+                alignment: Alignment.center,
+                child: myText(text: "Dont Have an Account ?",color: AppColors.lite_white,fontWeight: FontWeight.bold,)),
+              
+            
+              Align(
+                alignment: Alignment.center,
+                child:TextButton(
+                  onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => SignupTodo(),));
+                }, child:const myText(text: "Sign Up",color: AppColors.whitee,fontWeight: FontWeight.bold,fontSize: 17,letterSpacing: 1,)),
+              ),
+              
+                ],
+              ),
             ),
-            const Spacer(),
+
+            //const Spacer(),
             
             Align(
               alignment: Alignment.center,
@@ -117,7 +124,7 @@ class Login extends StatelessWidget {
                               context: context,
                               message: "Login Succesfuly",
                             );
-                            Navigator.push(context,MaterialPageRoute(builder: (context) =>viewNotes(),));
+                            Navigator.push(context,MaterialPageRoute(builder: (context) =>const viewNotes(),));
                           }else if(state is GetDataFailed){
                             message(
                               context: context,
@@ -132,6 +139,7 @@ class Login extends StatelessWidget {
                 ),
               ),
             )
+          
           ],
         ),
       )),
