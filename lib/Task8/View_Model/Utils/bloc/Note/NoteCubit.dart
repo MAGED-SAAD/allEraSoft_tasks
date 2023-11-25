@@ -176,23 +176,33 @@ class NoteCubit extends Cubit<NoteStates> {
     });
   }
 
+
+   TasksModel? tasksModelObjectPagenation;
+   
   Future<Response>? getAllNotesPagenation() {
-    print(
-        'MMMMMMMMMMMMMMMMMMMMMMMM Api  getAllTasksPagenation Tasks MMMMMMMMMMMMMMMMMMMMMMMMMMMM');
-    emit(IsLoading());
+    print('MMMMMMMMMMMMMMMMMMMMMMMM Api  getAllTasksPagenation Tasks MMMMMMMMMMMMMMMMMMMMMMMMMMMM');
+    emit(IsLoadingPagenation());
 
     DioHelper.get(
       endPoint: "${EndPoints.getAlltasks}?page=${++currentPageNum}",
       // Token: SharedPref.getData(key: SharedStrins.Token),
     ).then((value) {
-      tasksModelObject = TasksModel.fromJson(value?.data);
-      if (tasksModelObject!.data!.meta!.currentPage !=
-          tasksModelObject!.data!.meta!.lastPage) {
+      tasksModelObjectPagenation = TasksModel.fromJson(value?.data);
+
+      tasksModelObjectPagenation!.data!.tasks!.forEach((element) { 
+              tasksModelObject!.data!.tasks!.add(element);
+      });
+
+
+
+      if (tasksModelObjectPagenation!.data!.meta!.currentPage! < tasksModelObjectPagenation!.data!.meta!.lastPage!) {
         dispalayMore = true;
+      }else{
+        dispalayMore = false;
       }
 
       print(value);
-      emit(DataGetSuccess());
+      emit(PagenationDataGetSuccess());
     }).catchError((onError) {
       emit(GetDataFailed(error: onError.toString()));
     });

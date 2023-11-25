@@ -75,42 +75,58 @@ class viewNotes extends StatelessWidget {
                     builder: (context, state) {
                       if (state is IsLoading) {
                         return const My_circular_progress();
-                      }else{
+                      } else {
                         return Column(
-                        children: [
-                          const SizedBox(height: 15,),
-                          const Note_Builder(),
-                          if (NoteCubit.getObject(context).dispalayMore ??false)
-                            Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 15),
-                              child: TextButton(
-                                  style: const ButtonStyle(
-                                      backgroundColor: MaterialStatePropertyAll(
-                                          Color.fromARGB(39, 255, 255, 255))),
-                                  onPressed: () {},
-                                  child: const Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      myText(
-                                        text: "Show More ",
-                                        color: AppColors.whitee,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 17,
-                                      ),
-                                      Icon(
-                                        Icons.arrow_downward,
-                                        color: AppColors.whitee,
-                                        size: 25,
-                                      )
-                                    ],
-                                  )),
-                            )
-                        ],
-                      );
-                   
+                          children: [
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            const Note_Builder(),
+                            if (NoteCubit.getObject(context).dispalayMore ??
+                                false)
+                              BlocBuilder<NoteCubit, NoteStates>(
+                                builder: (context, state) {
+                                  if (state is IsLoadingPagenation) {
+                                    return const My_circular_progress();
+                                  } else {
+                                    return Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 15),
+                                      child: TextButton(
+                                          style: const ButtonStyle(
+                                              backgroundColor:
+                                                  MaterialStatePropertyAll(
+                                                      Color.fromARGB(
+                                                          39, 255, 255, 255))),
+                                          onPressed: () async {
+                                            await NoteCubit.getObject(context)
+                                                .getAllNotesPagenation();
+                                          },
+                                          child: const Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              myText(
+                                                text: "Show More ",
+                                                color: AppColors.whitee,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 17,
+                                              ),
+                                              Icon(
+                                                Icons.arrow_downward,
+                                                color: AppColors.whitee,
+                                                size: 25,
+                                              )
+                                            ],
+                                          )),
+                                    );
+                                  }
+                                },
+                              ),
+                          ],
+                        );
                       }
-                      
                     },
                     listener: (context, state) {
                       if (state is GetDataFailed) {
@@ -127,50 +143,6 @@ class viewNotes extends StatelessWidget {
                             Textcolor: Colors.green,
                             backgroundColor: AppColors.whitee);
                       }
-
-                      // else if (state is EditNote) {
-                      //   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                      //     content: Text(
-                      //       " Note Eddited Successfully !",
-                      //       style: TextStyle(
-                      //           color: Color.fromARGB(60, 0, 0, 255),
-                      //           fontWeight: FontWeight.bold),
-                      //     ),
-                      //     //"This Email didn't Sign up Yet"),
-                      //     behavior: SnackBarBehavior.floating,
-                      //     backgroundColor: AppColors.whitee,
-                      //     showCloseIcon: true,
-                      //     closeIconColor: AppColors.whitee,
-                      //   ));
-                      // } else if (state is DeleteNote) {
-                      //   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                      //     content: Text(
-                      //       " Note Deleted  Successfully !!",
-                      //       style: TextStyle(
-                      //           color: AppColors.red,
-                      //           fontWeight: FontWeight.bold),
-                      //     ),
-                      //     //"This Email didn't Sign up Yet"),
-                      //     behavior: SnackBarBehavior.floating,
-                      //     backgroundColor: AppColors.whitee,
-                      //     showCloseIcon: true,
-                      //     closeIconColor: AppColors.whitee,
-                      //   ));
-                      // } else if (State is WrongAction) {
-                      //   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                      //     content: Text(
-                      //       " This Action is Unvalid",
-                      //       style: TextStyle(
-                      //           color: AppColors.red,
-                      //           fontWeight: FontWeight.bold),
-                      //     ),
-                      //     //"This Email didn't Sign up Yet"),
-                      //     behavior: SnackBarBehavior.floating,
-                      //     backgroundColor: AppColors.whitee,
-                      //     showCloseIcon: true,
-                      //     closeIconColor: AppColors.whitee,
-                      //   ));
-                      // }
                     },
                   ),
                 ],

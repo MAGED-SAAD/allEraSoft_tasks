@@ -11,10 +11,13 @@ class My_circular_progress extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Center(
-      child: CircularProgressIndicator(
-        color: Colors.green,
-        strokeWidth: 10,
-        backgroundColor: AppColors.whitee,
+      child: Padding(
+        padding: EdgeInsets.all(20),
+        child: CircularProgressIndicator(
+          color: Colors.green,
+          strokeWidth: 10,
+          backgroundColor: AppColors.whitee,
+        ),
       ),
     );
   }

@@ -10,6 +10,7 @@ class WrongAction extends NoteStates{}
 class DataGetSuccess extends NoteStates {}
 
 class IsLoading extends NoteStates {}
+class IsLoadingPagenation extends NoteStates {}
 
 class AddNewNoteSuccess extends NoteStates {}
 
@@ -37,5 +38,6 @@ class GetDataFailed extends NoteStates {
 
 class TaskEditesSuccessfuly extends NoteStates{}
 
+class PagenationDataGetSuccess extends NoteStates{}
 
 class ChangeNoteStatus extends NoteStates{}

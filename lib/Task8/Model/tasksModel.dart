@@ -57,6 +57,7 @@ class Tasks {
 class Meta {
   int? total;
   int? perPage;
+  
   int? currentPage;
   int? lastPage;
 
