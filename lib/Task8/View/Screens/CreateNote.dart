@@ -1,31 +1,30 @@
-import 'package:cubiterasoft/Task8/View/Components/NoteStatusBuilder.dart';
+import 'package:cubiterasoft/Task8/View/Components/MessageScaffold.dart';
+import 'package:cubiterasoft/Task8/View/Components/My_circular_progress.dart';
 import 'package:cubiterasoft/Task8/View/Components/myText.dart';
 import 'package:cubiterasoft/Task8/View/Components/timePicker.dart';
-import 'package:cubiterasoft/Task8/View_Model/Utils/bloc/Note/NoteCubit.dart';
+import 'package:cubiterasoft/Task8/View/Screens/viewNotes.dart';
 import 'package:cubiterasoft/Task8/View_Model/Utils/bloc/Note/NoteStates.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../Model/Note_Model.dart';
 import '../../View_Model/Utils/Utils/appColors.dart';
+import '../../View_Model/Utils/bloc/Note/NoteCubit.dart';
+import '../Components/NoteStatusBuilder.dart';
 import '../Components/View_Full_Title_AndSub.dart';
 
 class CreateNote extends StatelessWidget {
   NoteModel? displayNote;
   int? objectIndex;
-  TextEditingController titleCont = TextEditingController();
-  TextEditingController subTitleCont = TextEditingController();
 
   CreateNote.NewNote({super.key});
-  CreateNote({super.key, required this.displayNote, required this.objectIndex});
 
-  
+  CreateNote({super.key, required this.displayNote, required this.objectIndex});
 
   @override
   Widget build(BuildContext context) {
     if (objectIndex != null) {
-      titleCont.text = displayNote!.title;
-      subTitleCont.text = displayNote!.subTitle;
+      NoteCubit.getObject(context).titleCont.text = displayNote!.title;
+      NoteCubit.getObject(context).subTitleCont.text = displayNote!.subTitle;
     }
 
     return Scaffold(
@@ -33,7 +32,7 @@ class CreateNote extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: AppColors.appBarBackground,
         title: const myText(
-          text: "Edit And View Note",
+          text: "Add New Note",
           fontWeight: FontWeight.bold,
           fontSize: 20,
           color: AppColors.whitee,
@@ -42,65 +41,60 @@ class CreateNote extends StatelessWidget {
       ),
       body: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15,),
-            child: Column(
-                  children: [
-          
-          
+        padding: const EdgeInsets.symmetric(
+          horizontal: 15,
+        ),
+        child:BlocConsumer<NoteCubit,NoteStates>(
+          builder: (context, state) {
+            if(state is IsLoading){
+              return const My_circular_progress();
+            }else{
+              return Column(
+          children: [
             const SizedBox(
               height: 15,
             ),
-            
-            View_Full_Title_AndSub(
-                titleCont: titleCont, subTitleCont: subTitleCont),
+            const View_Full_Title_AndSub(),
             const SizedBox(
               height: 15,
             ),
-
-
-
-
             timePicker(
-                timeFromCont: NoteCubit.getObject(context).timeFromcont, 
-                timeToCont: NoteCubit.getObject(context).timeTocont
-              ),
-
+                timeFromCont: NoteCubit.getObject(context).timeFromcont,
+                timeToCont: NoteCubit.getObject(context).timeTocont),
             const SizedBox(
-                height: 15,
+              height: 15,
             ),
-
-          
-            BlocBuilder<NoteCubit,NoteStates>(
-              builder: (context, state) {
-                return const NoteStatusBuilder();
-              },
-              ),
-            
-            
-            
-                 
+            const NoteStatusBuilder(),
             const Spacer(),
-          
             Align(
               alignment: Alignment.center,
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                 child: InkWell(
                   borderRadius: BorderRadius.circular(15),
-                  onTap: () {
-                    print("button clicked Save Note");
-                    if (titleCont.text != "" && subTitleCont.text != "") {
-                      if (objectIndex != null) {
-                        Navigator.pop(context);
-                        NoteCubit.getObject(context).editNote(
-                            title: titleCont.text,
-                            SubTitle: subTitleCont.text,
-                            index: objectIndex!);
-                      } else {
-                        Navigator.pop(context);
-                        NoteCubit.getObject(context).addNote(
-                            title: titleCont.text, subTitle: subTitleCont.text);
-                      }
+                  onTap: () async {
+                    print("button clicked Save Task");
+                    if (NoteCubit.getObject(context).titleCont.text != "" &&
+                        NoteCubit.getObject(context).subTitleCont.text != "" &&
+                        NoteCubit.getObject(context).timeFromcont.text != "" &&
+                        NoteCubit.getObject(context).timeTocont.text != "") {
+                      await NoteCubit.getObject(context).addNewNote();
+
+
+                      // ignore: use_build_context_synchronously
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const viewNotes(),
+                          ));
+                          
+                    } else {
+                      message(
+                          context: context,
+                          message: "Please Fill All Data",
+                          backgroundColor: Colors.red,
+                          Textcolor: AppColors.whitee);
                     }
                   },
                   child: Ink(
@@ -111,7 +105,7 @@ class CreateNote extends StatelessWidget {
                         borderRadius: BorderRadius.circular(15)),
                     child: const Center(
                       child: myText(
-                        text: "Save or Edit",
+                        text: "Add Task",
                         color: AppColors.whitee,
                         fontWeight: FontWeight.bold,
                         fontSize: 17,
@@ -121,40 +115,30 @@ class CreateNote extends StatelessWidget {
                 ),
               ),
             ),
-            Align(
-              alignment: Alignment.center,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                child: InkWell(
-                  borderRadius: BorderRadius.circular(15),
-                  onTap: () {
-                    if (objectIndex != null) {
-                      Navigator.pop(context);
-                      NoteCubit.getObject(context)
-                          .deleteNote(index: objectIndex!);
-                    }
-                  },
-                  child: Ink(
-                    width: double.infinity,
-                    padding: const EdgeInsets.all(15),
-                    decoration: BoxDecoration(
-                        color: AppColors.red,
-                        borderRadius: BorderRadius.circular(15)),
-                    child: const Center(
-                      child: myText(
-                        text: "Delete Note",
-                        color: AppColors.whitee,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 17,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            )
-                  ],
-                ),
-          )),
+          ],
+        );
+            }
+          }, 
+          listener: (BuildContext context, state) {  
+            if (state is AddNewNoteSuccess) {
+                    message(
+                        context: context,
+                        message: "New Note Added Successfully !",
+                        Textcolor: Colors.green,
+                        backgroundColor: AppColors.whitee
+              );
+
+                      }else if (state is GetDataFailed) {
+                    message(
+                        context: context,
+                        message: state.error.toString(),
+                        Textcolor: Colors.red);
+                  }
+          },
+        ) 
+
+
+      )),
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:cubiterasoft/Task8/View/Components/LoginTextform.dart';
 import 'package:cubiterasoft/Task8/View/Components/MessageScaffold.dart';
+import 'package:cubiterasoft/Task8/View/Components/My_circular_progress.dart';
 import 'package:cubiterasoft/Task8/View/Components/myText.dart';
 import 'package:cubiterasoft/Task8/View/Components/remember_me.dart';
 import 'package:cubiterasoft/Task8/View/Screens/Signup.dart';
@@ -109,7 +110,7 @@ class Login extends StatelessWidget {
                       BlocConsumer<LoginCubit, LoginCubitStates>(
                         builder: (context, state) {
                           return state is IsLoading
-                              ? const Center(child: CircularProgressIndicator(color: AppColors.whitee,))
+                              ? const My_circular_progress()
                               : const myText(
                                   text: "Login",
                                   color: AppColors.whitee,

@@ -1,3 +1,4 @@
+import 'package:cubiterasoft/Task8/View_Model/Utils/bloc/Note/NoteCubit.dart';
 import 'package:flutter/material.dart';
 
 import '../../View_Model/Utils/Utils/appColors.dart';
@@ -5,12 +6,12 @@ import '../../View_Model/Utils/Utils/appColors.dart';
 class View_Full_Title_AndSub extends StatelessWidget {
   const View_Full_Title_AndSub({
     super.key,
-    required this.titleCont,
-    required this.subTitleCont,
+    // required this.titleCont,
+    // required this.subTitleCont,
   });
 
-  final TextEditingController titleCont;
-  final TextEditingController subTitleCont;
+  // final TextEditingController titleCont;
+  // final TextEditingController subTitleCont;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,7 @@ class View_Full_Title_AndSub extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 0),
                 child: TextFormField(
-                  controller: titleCont,
+                  controller: NoteCubit.getObject(context).titleCont,
                   //initialValue:displayNote.title,
                   maxLines: 1,
                   autovalidateMode:AutovalidateMode.onUserInteraction,
@@ -67,7 +68,7 @@ class View_Full_Title_AndSub extends StatelessWidget {
                 child: TextFormField(
                   keyboardType: TextInputType.multiline,
                   maxLines: null,
-                  controller: subTitleCont,
+                  controller: NoteCubit.getObject(context).subTitleCont,
                   autovalidateMode:AutovalidateMode.onUserInteraction,
                   //initialValue:displayNote.title,
                   

@@ -4,4 +4,6 @@ class EndPoints {
   //static String todoBaseUrl ="";
   static String login ="login";
   static String signUp ="register";
+  static String getAlltasks ="tasks";
+  static String addNewNote ="tasks";
 }

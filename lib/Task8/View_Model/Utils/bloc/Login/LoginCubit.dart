@@ -19,10 +19,13 @@ class LoginCubit extends Cubit<LoginCubitStates> {
     return (BlocProvider.of<LoginCubit>(context));
   }
 
-  void setLocaldata({required  value}){
-    SharedPref.setData(key: SharedStrins.Token, value: value!.data["data"]["token"]);
-    SharedPref.setData(key: SharedStrins.UserName, value: value!.data["data"]["user"]["name"]);
-    SharedPref.setData(key: SharedStrins.UserId, value: value!.data["data"]["user"]["id"]);
+  void setLocaldata({required value}) {
+    SharedPref.setData(
+        key: SharedStrins.Token, value: value!.data["data"]["token"]);
+    SharedPref.setData(
+        key: SharedStrins.UserName, value: value!.data["data"]["user"]["name"]);
+    SharedPref.setData(
+        key: SharedStrins.UserId, value: value!.data["data"]["user"]["id"]);
   }
 
   Future<void> Login() async {
@@ -36,12 +39,13 @@ class LoginCubit extends Cubit<LoginCubitStates> {
       "password": passwordCont.text,
     }).then((value) {
       print(value);
+
       if (value?.statusCode == 200) {
-        
-        if(m3rfsh??false){
+        if (m3rfsh ?? false) {
           setLocaldata(value: value);
+        } else {
+          DioHelper.currentToken = value!.data["data"]["token"];
         }
-        
 
         emit(DataGetSuccess());
       } else {

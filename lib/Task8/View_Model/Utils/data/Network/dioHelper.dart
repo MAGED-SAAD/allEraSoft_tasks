@@ -1,8 +1,11 @@
 import 'package:cubiterasoft/Task8/View_Model/Utils/Utils/EndPoints.dart';
+import 'package:cubiterasoft/Task8/View_Model/Utils/Utils/sharedPrefStrings.dart';
+import 'package:cubiterasoft/Task8/View_Model/Utils/data/Local/SharedPref.dart';
 import 'package:dio/dio.dart';
 
 class DioHelper {
   static Dio? dio;
+  static String? currentToken=SharedPref.getData(key: SharedStrins.Token);
 
   static void init() {
     dio = Dio(
@@ -22,29 +25,91 @@ class DioHelper {
   static Future<Response?> get({
     required String endPoint,
     Map<String, dynamic>? body,
-    Map<String, dynamic>? Prams,
-    String? Token,
+    //Map<String, dynamic>? Prams,
+    
   }) async {
+    
     try {
-      Response? response = await dio?.get(endPoint);
+      Response? response = await dio?.get(endPoint,
+      
+      options:
+      currentToken!=null?
+      Options(
+        headers: {
+          "Authorization":"Bearer $currentToken"
+        }
+      ):null
+      );
       return response;
     } catch (e) {
       rethrow;
     }
   }
 
+
+
+
+
+
+
+
   static Future<Response?> post({
     required String endPoint,
-    Map<String, dynamic>? body,
-    Map<String, dynamic>? Prams,
+    //Map<String, dynamic>? Prams,
+    Map<String, dynamic>? headers,
     required Map<String, dynamic>? data,
-    String? Token,
+    //String? Token,
   }) async {
+    
     try {
-      Response? response = await dio?.post(endPoint, data: data);
+      Response? response = await dio?.post(endPoint, data: data,
+      options:Options(
+        headers: headers
+      )
+      );
       return response;
     } catch (e) {
       rethrow;
     }
   }
+
+
+
+
+
+
+
+
+
+
+
+
+   static Future<Response?> deletee({
+    required String endPoint,
+    //Map<String, dynamic>? Prams,
+    Map<String, dynamic>? headers,
+     Map<String, dynamic>? data,
+    //String? Token,
+  }) async {
+    
+    try {
+      Response? response = await dio?.delete(endPoint, data: data,
+      options:
+      currentToken!=null?
+      Options(
+        headers: {
+          "Authorization":"Bearer $currentToken"
+        }
+      ):null
+      );
+      return response;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+
+
+
+
 }

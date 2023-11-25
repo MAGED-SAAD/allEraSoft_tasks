@@ -1,6 +1,7 @@
 import 'package:cubiterasoft/Pokemon/bloc/PokemonCubit.dart';
 import 'package:cubiterasoft/Task8/View/Screens/Login.dart';
 import 'package:cubiterasoft/Task8/View/Screens/splashScreen.dart';
+import 'package:cubiterasoft/Task8/View/Screens/viewNotes.dart';
 import 'package:cubiterasoft/Task8/View_Model/Utils/Utils/EndPoints.dart';
 import 'package:cubiterasoft/Task8/View_Model/Utils/bloc/Login/LoginCubit.dart';
 import 'package:cubiterasoft/Task8/View_Model/Utils/bloc/Note/NoteCubit.dart';
@@ -39,7 +40,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => LoginCubit()),
         BlocProvider(create: (context) => TaskCubit()),
         BlocProvider(create: (context) => Counter_cubit()),
-        BlocProvider(create: (context) => NoteCubit()),
+        BlocProvider(create: (context) => NoteCubit()..getAllNotes()),
         BlocProvider(
           create: (context) => PokemonCubit()
             ..get_Pokemon_data(
@@ -50,8 +51,10 @@ class MyApp extends StatelessWidget {
       child: const MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
-        home: SplashScreen(),
-        //gridViewScreen(),
+        home: 
+        Login(),
+        //viewNotes(),
+        //SplashScreen(),
       ),
     );
   }

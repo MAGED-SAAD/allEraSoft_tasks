@@ -1,7 +1,9 @@
 import 'package:cubiterasoft/Task8/View/Components/myText.dart';
 import 'package:cubiterasoft/Task8/View_Model/Utils/Utils/appColors.dart';
 import 'package:cubiterasoft/Task8/View_Model/Utils/bloc/Note/NoteCubit.dart';
+import 'package:cubiterasoft/Task8/View_Model/Utils/bloc/Note/NoteStates.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class NoteStatusBuilder extends StatelessWidget {
   const NoteStatusBuilder({
@@ -10,7 +12,10 @@ class NoteStatusBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return BlocBuilder<NoteCubit, NoteStates>(
+      builder: (context, state) {
+        return  
+        Padding(
       padding: const EdgeInsets.symmetric(
         vertical: 10,
       ),
@@ -19,7 +24,7 @@ class NoteStatusBuilder extends StatelessWidget {
             borderRadius: BorderRadius.circular(15),
             border: Border.all(width: 3, color: AppColors.lite_white)),
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 2,horizontal: 2),
+          padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 2),
           child: Row(
             children: [
               Expanded(
@@ -56,7 +61,7 @@ class NoteStatusBuilder extends StatelessWidget {
                   child: InkWell(
                 onTap: () {
                   NoteCubit.getObject(context)
-                      .NoteStatusPressed(status: "Completed");
+                      .NoteStatusPressed(status: "compeleted");
                 },
                 borderRadius: BorderRadius.circular(15),
                 splashColor: AppColors.lite_white,
@@ -65,14 +70,14 @@ class NoteStatusBuilder extends StatelessWidget {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
                         color: NoteCubit.getObject(context).noteStatus ==
-                                "Completed"
+                                "compeleted"
                             ? Colors.green[700]
                             : null),
                     child: const Center(
                         child: FittedBox(
                       fit: BoxFit.scaleDown,
                       child: myText(
-                        text: "Completed",
+                        text: "compeleted",
                         color: AppColors.whitee,
                         fontWeight: FontWeight.bold,
                         fontSize: 15,
@@ -141,5 +146,9 @@ class NoteStatusBuilder extends StatelessWidget {
         ),
       ),
     );
+  
+      },
+    );
+   
   }
 }

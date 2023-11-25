@@ -27,8 +27,7 @@ class timePicker extends StatelessWidget {
                     await showDatePicker(
                       context: context,
                       initialDate: DateTime.now(),
-                      firstDate:
-                          DateTime.now().subtract(const Duration(days: 365)),
+                      firstDate:DateTime.now(),
                       lastDate: DateTime.now().add(const Duration(days: 365)),
                     ).then((value) {
                       if (value != null) {
@@ -86,7 +85,7 @@ class timePicker extends StatelessWidget {
                       context: context,
                       initialDate: DateTime.now(),
                       firstDate:
-                          DateTime.now().subtract(const Duration(days: 365)),
+                          DateTime.now(),
                       lastDate: DateTime.now().add(const Duration(days: 365)),
                     ).then((value) {
                       if (value != null) {

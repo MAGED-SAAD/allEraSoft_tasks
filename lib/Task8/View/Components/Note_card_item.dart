@@ -1,13 +1,14 @@
+import 'package:cubiterasoft/Task8/Model/tasksModel.dart';
+import 'package:cubiterasoft/Task8/View_Model/Utils/bloc/Note/NoteCubit.dart';
 import 'package:flutter/material.dart';
 
-import '../../Model/Note_Model.dart';
 import 'BackGroundNote.dart';
 import 'NoteContent.dart';
 
 class Note_card_item extends StatelessWidget {
 
   final void Function()? ontap;
-  final NoteModel Note;
+  final Tasks Note;
   
    Note_card_item({
     required this.Note,
@@ -18,13 +19,15 @@ class Note_card_item extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  BackGroundNote(
-      Bordercolor:Note.borderColor??Colors.white,
+      Bordercolor:NoteCubit.getObject(context).taskColor(
+        Status: Note.status??"New"
+        ),
       onTap: ontap,
       childd: NoteContent(
         title: Note.title,
-        subtitle: Note.subTitle,
-        starttime: Note.dateFrom,
-        endtime: Note.dateTo,
+        subtitle: Note.title,
+        starttime: Note.startDate,
+        endtime: Note.endDate,
       ),
     );
   }
