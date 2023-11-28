@@ -24,20 +24,21 @@ class _SplashScreenState extends State<SplashScreen> {
     Future.delayed(
       const Duration(seconds: 6),
       () {
-        if(SharedPref.getData(key: SharedStrins.UserId)!=null){
+        if (SharedPref.getData(key: SharedStrins.UserId) != null) {
           Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) =>  const viewNotes(),
-            ));
-        }else{
+              context,
+              MaterialPageRoute(
+                builder: (context) => const viewNotes(
+                  isFilter: false,
+                ),
+              ));
+        } else {
           Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const Login(),
-            ));
+              context,
+              MaterialPageRoute(
+                builder: (context) => const Login(),
+              ));
         }
-        
       },
     );
   }
@@ -50,10 +51,8 @@ class _SplashScreenState extends State<SplashScreen> {
           child: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 20,
-          
         ),
         child: LottieBuilder.network(
-          
           "https://lottie.host/ab7f2dc4-825b-46c7-8cb1-fbe5a407ebe4/hm4eQ3cJBl.json",
           height: double.infinity,
           width: double.infinity,

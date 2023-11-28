@@ -3,11 +3,16 @@ import 'package:shared_preferences/shared_preferences.dart';
 class SharedPref {
   static SharedPreferences? myObject;
 
-  static  init_SharedPref () async {
-     myObject = await SharedPreferences.getInstance();
+  static String? datefrom;
+  static String? dateTo;
+  static String? status;
+
+
+  static init_SharedPref() async {
+    myObject = await SharedPreferences.getInstance();
   }
 
-  static void setData({required String key, required dynamic value}) async{
+  static void setData({required String key, required dynamic value}) async {
     if (value is int) {
       await myObject?.setInt(key, value);
     } else if (value is bool) {
@@ -23,7 +28,7 @@ class SharedPref {
   }
 
   static dynamic getData({required String key}) {
-    return  myObject!.get(key);
+    return myObject!.get(key);
   }
 
   static void removeData({required String key}) {

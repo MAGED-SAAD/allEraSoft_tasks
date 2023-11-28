@@ -106,7 +106,7 @@ class EditNoteScreen extends StatelessWidget {
                                         context,
                                         MaterialPageRoute(
                                           builder: (context) =>
-                                              const viewNotes(),
+                                              const viewNotes(isFilter: false,),
                                         ));
                                   } else {
                                     message(
@@ -150,7 +150,7 @@ class EditNoteScreen extends StatelessWidget {
                                   Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => const viewNotes(),
+                                        builder: (context) => const viewNotes(isFilter: false,),
                                       ));
                                 },
                                 child: Ink(

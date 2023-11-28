@@ -6,4 +6,5 @@ class EndPoints {
   static String signUp ="register";
   static String getAlltasks ="tasks";
   static String addNewNote ="tasks";
+  static String getFilterTasks='tasks-filter';
 }

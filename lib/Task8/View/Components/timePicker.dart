@@ -7,8 +7,9 @@ class timePicker extends StatelessWidget {
     super.key,
     required this.timeFromCont,
     required this.timeToCont,
+    this.closrAutoValidate=false
   });
-
+  final bool closrAutoValidate;
   final TextEditingController timeFromCont;
   final TextEditingController timeToCont;
 
@@ -27,17 +28,20 @@ class timePicker extends StatelessWidget {
                     await showDatePicker(
                       context: context,
                       initialDate: DateTime.now(),
-                      firstDate:DateTime.now(),
+                      firstDate: DateTime.now(),
                       lastDate: DateTime.now().add(const Duration(days: 365)),
                     ).then((value) {
                       if (value != null) {
-                        timeFromCont.text = value.toString().substring(0,10);
+                        timeFromCont.text = value.toString().substring(0, 10);
                       }
                     });
                   },
                   readOnly: true,
                   maxLines: 1,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  autovalidateMode: closrAutoValidate?
+                  null
+                  : 
+                  AutovalidateMode.onUserInteraction,
                   keyboardType: TextInputType.text,
                   style: const TextStyle(color: AppColors.whitee),
                   decoration: const InputDecoration(
@@ -80,22 +84,23 @@ class timePicker extends StatelessWidget {
                   keyboardType: TextInputType.multiline,
                   maxLines: null,
                   controller: timeToCont,
-                  onTap: () async{
+                  onTap: () async {
                     await showDatePicker(
                       context: context,
                       initialDate: DateTime.now(),
-                      firstDate:
-                          DateTime.now(),
+                      firstDate: DateTime.now(),
                       lastDate: DateTime.now().add(const Duration(days: 365)),
                     ).then((value) {
                       if (value != null) {
-                        timeToCont.text = value.toString().substring(0,10);
+                        timeToCont.text = value.toString().substring(0, 10);
                       }
                     });
-
                   },
                   readOnly: true,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  autovalidateMode:closrAutoValidate?
+                  null
+                  : 
+                  AutovalidateMode.onUserInteraction,
                   //initialValue:displayNote.title,
 
                   style: const TextStyle(color: AppColors.whitee),

@@ -18,7 +18,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-void main() async{
+void main() {
   WidgetsFlutterBinding.ensureInitialized();
   
   SharedPref.init_SharedPref();
@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => LoginCubit()),
         BlocProvider(create: (context) => TaskCubit()),
         BlocProvider(create: (context) => Counter_cubit()),
-        BlocProvider(create: (context) => NoteCubit()..getAllNotes()),
+        BlocProvider(create: (context) => NoteCubit()..getAllNotes(isFilter: false)),
         BlocProvider(
           create: (context) => PokemonCubit()
             ..get_Pokemon_data(
@@ -53,7 +53,7 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         home: 
         //Login(),
-        viewNotes(),
+        viewNotes(isFilter: false,),
         //SplashScreen(),
       ),
     );

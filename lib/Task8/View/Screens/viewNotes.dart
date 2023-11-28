@@ -1,6 +1,7 @@
 import 'package:cubiterasoft/Task8/View/Components/ExplainTaskState.dart';
 import 'package:cubiterasoft/Task8/View/Components/MessageScaffold.dart';
 import 'package:cubiterasoft/Task8/View/Components/My_circular_progress.dart';
+import 'package:cubiterasoft/Task8/View/Screens/FliterScreen.dart';
 import 'package:cubiterasoft/Task8/View/Screens/Login.dart';
 import 'package:cubiterasoft/Task8/View_Model/Utils/data/Local/SharedPref.dart';
 import 'package:flutter/material.dart';
@@ -15,14 +16,15 @@ import '../Components/Note_Builder.dart';
 import 'CreateNote.dart';
 
 class viewNotes extends StatelessWidget {
-  const viewNotes({super.key});
+  final bool isFilter;
+  const viewNotes({super.key,required this.isFilter});
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
 
     return BlocProvider.value(
-        value: NoteCubit()..getAllNotes(),
+        value: NoteCubit()..getAllNotes(isFilter: isFilter),
         child: Scaffold(
           backgroundColor: AppColors.Background,
           appBar: AppBar(
@@ -34,7 +36,25 @@ class viewNotes extends StatelessWidget {
             ),
             centerTitle: true,
             actions: [
-              IconButton(
+
+                  IconButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const FilterScreen(),
+                        ));
+                  },
+                  icon: const Icon(
+                    Icons.filter_alt,
+                    color: AppColors.whitee,
+                  )),
+
+
+
+
+
+                  IconButton(
                   onPressed: () {
                     SharedPref.clearDataAll();
                     Navigator.push(
@@ -46,7 +66,8 @@ class viewNotes extends StatelessWidget {
                   icon: const Icon(
                     Icons.logout,
                     color: AppColors.whitee,
-                  ))
+                  )),
+
             ],
           ),
           floatingActionButton: CircleAvatar(

@@ -125,7 +125,7 @@ class Login extends StatelessWidget {
                               context: context,
                               message: "Login Succesfuly",
                             );
-                            Navigator.push(context,MaterialPageRoute(builder: (context) =>const viewNotes(),));
+                            Navigator.push(context,MaterialPageRoute(builder: (context) =>const viewNotes(isFilter: false),));
                           }else if(state is GetDataFailed){
                             message(
                               context: context,

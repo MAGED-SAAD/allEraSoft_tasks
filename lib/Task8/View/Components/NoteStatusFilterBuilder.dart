@@ -1,3 +1,5 @@
+
+
 import 'package:cubiterasoft/Task8/View/Components/myText.dart';
 import 'package:cubiterasoft/Task8/View_Model/Utils/Utils/appColors.dart';
 import 'package:cubiterasoft/Task8/View_Model/Utils/bloc/Note/NoteCubit.dart';
@@ -5,8 +7,8 @@ import 'package:cubiterasoft/Task8/View_Model/Utils/bloc/Note/NoteStates.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class NoteStatusBuilder extends StatelessWidget {
-  const NoteStatusBuilder({
+class NoteStatusFilterBuilder extends StatelessWidget {
+  const NoteStatusFilterBuilder({
     super.key,
   });
 
@@ -30,7 +32,7 @@ class NoteStatusBuilder extends StatelessWidget {
               Expanded(
                   child: InkWell(
                 onTap: () {
-                  NoteCubit.getObject(context).NoteStatusPressed(status: "outdated");
+                  NoteCubit.getObject(context).NoteStatusFilterPressed(status: "outdated");
                 },
                 borderRadius: BorderRadius.circular(15),
                 splashColor: AppColors.lite_white,
@@ -38,7 +40,7 @@ class NoteStatusBuilder extends StatelessWidget {
                     padding: const EdgeInsets.all(15),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
-                        color: NoteCubit.getObject(context).noteStatus ==
+                        color: NoteCubit.getObject(context).noteStatusFilter ==
                                 "outdated"
                             ? Colors.red[700]
                             : null),
@@ -60,7 +62,7 @@ class NoteStatusBuilder extends StatelessWidget {
                   child: InkWell(
                 onTap: () {
                   NoteCubit.getObject(context)
-                      .NoteStatusPressed(status: "compeleted");
+                      .NoteStatusFilterPressed(status: "compeleted");
                 },
                 borderRadius: BorderRadius.circular(15),
                 splashColor: AppColors.lite_white,
@@ -68,7 +70,7 @@ class NoteStatusBuilder extends StatelessWidget {
                     padding: const EdgeInsets.all(15),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
-                        color: NoteCubit.getObject(context).noteStatus ==
+                        color: NoteCubit.getObject(context).noteStatusFilter ==
                                 "compeleted"
                             ? Colors.green[700]
                             : null),
@@ -90,7 +92,7 @@ class NoteStatusBuilder extends StatelessWidget {
                   child: InkWell(
                 onTap: () {
                   NoteCubit.getObject(context)
-                      .NoteStatusPressed(status: "doing");
+                      .NoteStatusFilterPressed(status: "doing");
                 },
                 borderRadius: BorderRadius.circular(15),
                 splashColor: AppColors.lite_white,
@@ -99,7 +101,7 @@ class NoteStatusBuilder extends StatelessWidget {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
                         color:
-                            NoteCubit.getObject(context).noteStatus == "doing"
+                            NoteCubit.getObject(context).noteStatusFilter == "doing"
                                 ? Colors.blue[700]
                                 : null),
                     child: const Center(
@@ -119,7 +121,7 @@ class NoteStatusBuilder extends StatelessWidget {
               Expanded(
                   child: InkWell(
                 onTap: () {
-                  NoteCubit.getObject(context).NoteStatusPressed(status: "new");
+                  NoteCubit.getObject(context).NoteStatusFilterPressed(status: "new");
                 },
                 borderRadius: BorderRadius.circular(15),
                 splashColor: AppColors.lite_white,
@@ -127,7 +129,7 @@ class NoteStatusBuilder extends StatelessWidget {
                     padding: const EdgeInsets.all(15),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
-                        color: NoteCubit.getObject(context).noteStatus == "new"
+                        color: NoteCubit.getObject(context).noteStatusFilter == "new"
                             ? Colors.amber[700]
                             : null),
                     child: const Center(

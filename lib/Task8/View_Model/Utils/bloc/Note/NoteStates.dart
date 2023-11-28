@@ -41,3 +41,5 @@ class TaskEditesSuccessfuly extends NoteStates{}
 class PagenationDataGetSuccess extends NoteStates{}
 
 class ChangeNoteStatus extends NoteStates{}
+
+class ChangeNoteStatusFilter extends NoteStates{}

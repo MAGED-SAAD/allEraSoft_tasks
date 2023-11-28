@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_null_aware_operators
+
 import 'package:bloc/bloc.dart';
 import 'package:cubiterasoft/Task8/Model/tasksModel.dart';
 import 'package:cubiterasoft/Task8/View_Model/Utils/Utils/EndPoints.dart';
@@ -16,10 +18,15 @@ import '../../../../Model/Note_Model.dart';
 class NoteCubit extends Cubit<NoteStates> {
   NoteCubit() : super(InitState());
 
+  final TextEditingController timeFromcontFilter = TextEditingController();
+  final TextEditingController timeTocontFilter = TextEditingController();
+  String? noteStatusFilter;
+
   final TextEditingController timeFromcont = TextEditingController();
   final TextEditingController timeTocont = TextEditingController();
-  TextEditingController titleCont = TextEditingController();
-  TextEditingController subTitleCont = TextEditingController();
+
+  final TextEditingController titleCont = TextEditingController();
+  final TextEditingController subTitleCont = TextEditingController();
 
   String? noteStatus;
 
@@ -32,15 +39,35 @@ class NoteCubit extends Cubit<NoteStates> {
   bool? dispalayMore = false;
   int currentPageNum = 1;
 
-  Future<Response>? getAllNotes() {
-    print(
-        'MMMMMMMMMMMMMMMMMMMMMMMM Api Get All Tasks MMMMMMMMMMMMMMMMMMMMMMMMMMMM');
+
+
+  Future<Response>? getAllNotes({required bool isFilter}) {
+    print('MMMMMMMMMMMMMMMMMMMMMMMM Api Get All Tasks MMMMMMMMMMMMMMMMMMMMMMMMMMMM');
     emit(IsLoading());
 
-    DioHelper.get(
-      endPoint: EndPoints.getAlltasks,
-      // Token: SharedPref.getData(key: SharedStrins.Token),
+    print(SharedPref.dateTo);
+    print(SharedPref.status);
+
+    DioHelper.get(endPoint: 
+    isFilter?
+    EndPoints.getFilterTasks
+    :
+    EndPoints.getAlltasks, 
+   
+   
+    Prams: {
+      "to": SharedPref.dateTo == null||SharedPref.dateTo == ""
+          ? null
+          : SharedPref.dateTo.toString().substring(0, 10),
+      "from": SharedPref.datefrom == null||SharedPref.datefrom == ""
+          ? null
+          : SharedPref.datefrom.toString().substring(0, 10),
+      "status": SharedPref.status,
+    }
+    
+    
     ).then((value) {
+
       tasksModelObject = TasksModel.fromJson(value?.data);
       if (tasksModelObject!.data!.meta!.currentPage !=
           tasksModelObject!.data!.meta!.lastPage) {
@@ -55,6 +82,10 @@ class NoteCubit extends Cubit<NoteStates> {
     return null;
   }
 
+
+
+
+
   Color taskColor({required String Status}) {
     if (Status == "outdated") {
       return Colors.red;
@@ -68,8 +99,7 @@ class NoteCubit extends Cubit<NoteStates> {
   }
 
   Future<void> addNewNote() async {
-    print(
-        'MMMMMMMMMMMMMMMMMMMMMMMM Api Add New  Tasks MMMMMMMMMMMMMMMMMMMMMMMMMMMM');
+    print('MMMMMMMMMMMMMMMMMMMMMMMM Api Add New  Tasks MMMMMMMMMMMMMMMMMMMMMMMMMMMM');
 
     emit(IsLoading());
 
@@ -99,6 +129,14 @@ class NoteCubit extends Cubit<NoteStates> {
     } else {
       noteStatus = status;
       emit(ChangeNoteStatus());
+    }
+  }
+
+  void NoteStatusFilterPressed({required String status}) {
+    if (noteStatusFilter == status) {
+    } else {
+      noteStatusFilter = status;
+      emit(ChangeNoteStatusFilter());
     }
   }
 
@@ -176,11 +214,11 @@ class NoteCubit extends Cubit<NoteStates> {
     });
   }
 
+  TasksModel? tasksModelObjectPagenation;
 
-   TasksModel? tasksModelObjectPagenation;
-   
   Future<Response>? getAllNotesPagenation() {
-    print('MMMMMMMMMMMMMMMMMMMMMMMM Api  getAllTasksPagenation Tasks MMMMMMMMMMMMMMMMMMMMMMMMMMMM');
+    print(
+        'MMMMMMMMMMMMMMMMMMMMMMMM Api  getAllTasksPagenation Tasks MMMMMMMMMMMMMMMMMMMMMMMMMMMM');
     emit(IsLoadingPagenation());
 
     DioHelper.get(
@@ -189,15 +227,14 @@ class NoteCubit extends Cubit<NoteStates> {
     ).then((value) {
       tasksModelObjectPagenation = TasksModel.fromJson(value?.data);
 
-      tasksModelObjectPagenation!.data!.tasks!.forEach((element) { 
-              tasksModelObject!.data!.tasks!.add(element);
+      tasksModelObjectPagenation!.data!.tasks!.forEach((element) {
+        tasksModelObject!.data!.tasks!.add(element);
       });
 
-
-
-      if (tasksModelObjectPagenation!.data!.meta!.currentPage! < tasksModelObjectPagenation!.data!.meta!.lastPage!) {
+      if (tasksModelObjectPagenation!.data!.meta!.currentPage! <
+          tasksModelObjectPagenation!.data!.meta!.lastPage!) {
         dispalayMore = true;
-      }else{
+      } else {
         dispalayMore = false;
       }
 

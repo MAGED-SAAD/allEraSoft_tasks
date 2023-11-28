@@ -45,6 +45,7 @@ dependencies:
   share_plus: ^7.2.1
   lottie: ^2.7.0
   sizer: ^2.0.15
+  syncfusion_flutter_charts: ^23.2.5
   
 
 dev_dependencies:

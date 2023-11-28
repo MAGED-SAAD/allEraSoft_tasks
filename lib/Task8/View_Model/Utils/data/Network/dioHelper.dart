@@ -25,13 +25,13 @@ class DioHelper {
   static Future<Response?> get({
     required String endPoint,
     Map<String, dynamic>? body,
-    //Map<String, dynamic>? Prams,
+    Map<String, dynamic>? Prams,
     
   }) async {
     
     try {
       Response? response = await dio?.get(endPoint,
-      
+      queryParameters: Prams,
       options:
       currentToken!=null?
       Options(

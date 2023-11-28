@@ -32,7 +32,7 @@ class CreateNote extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: AppColors.appBarBackground,
         title: const myText(
-          text: "Add New Note",
+          text: "Add New Task",
           fontWeight: FontWeight.bold,
           fontSize: 20,
           color: AppColors.whitee,
@@ -86,7 +86,7 @@ class CreateNote extends StatelessWidget {
                       Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const viewNotes(),
+                            builder: (context) => const viewNotes(isFilter: false),
                           ));
                           
                     } else {
