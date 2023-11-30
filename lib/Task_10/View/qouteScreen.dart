@@ -1,5 +1,5 @@
-import 'package:cubiterasoft/Task8/View/Components/myText.dart';
-import 'package:cubiterasoft/Task8/View_Model/Utils/Utils/appColors.dart';
+import 'package:cubiterasoft/Dark%20ToDo%20App/View/Components/myText.dart';
+import 'package:cubiterasoft/Dark%20ToDo%20App/View_Model/Utils/Utils/appColors.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 

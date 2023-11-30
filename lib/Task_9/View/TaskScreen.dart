@@ -1,11 +1,11 @@
-import 'package:cubiterasoft/Task8/View/Components/myText.dart';
-import 'package:cubiterasoft/Task8/View_Model/Utils/bloc/Note/NoteCubit.dart';
+import 'package:cubiterasoft/Dark%20ToDo%20App/View/Components/myText.dart';
+import 'package:cubiterasoft/Dark%20ToDo%20App/View_Model/Utils/bloc/Note/NoteCubit.dart';
 import 'package:cubiterasoft/Task_9/bloc/TaskCubit.dart';
 import 'package:cubiterasoft/Task_9/bloc/TaskCubitStates.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../Task8/View_Model/Utils/Utils/appColors.dart';
+import '../../Dark ToDo App/View_Model/Utils/Utils/appColors.dart';
 
 class TaskScreen extends StatelessWidget {
   const TaskScreen({super.key});

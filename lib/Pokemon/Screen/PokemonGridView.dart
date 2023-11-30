@@ -1,11 +1,11 @@
 import 'package:cubiterasoft/Pokemon/Screen/PokemonInfo.dart';
 import 'package:cubiterasoft/Pokemon/bloc/PokemonCubit.dart';
 import 'package:cubiterasoft/Pokemon/bloc/PokemonCubitStates.dart';
-import 'package:cubiterasoft/Task8/View/Components/myText.dart';
-import 'package:cubiterasoft/Task8/View_Model/Utils/Utils/EndPoints.dart';
+import 'package:cubiterasoft/Dark%20ToDo%20App/View/Components/myText.dart';
+import 'package:cubiterasoft/Dark%20ToDo%20App/View_Model/Utils/Utils/EndPoints.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../Task8/View_Model/Utils/Utils/appColors.dart';
+import '../../Dark ToDo App/View_Model/Utils/Utils/appColors.dart';
 
 class PokemonGridView extends StatelessWidget {
   const PokemonGridView({super.key});

@@ -1,13 +1,13 @@
 import 'package:cubiterasoft/Pokemon/bloc/PokemonCubit.dart';
-import 'package:cubiterasoft/Task8/View/Screens/Login.dart';
-import 'package:cubiterasoft/Task8/View/Screens/splashScreen.dart';
-import 'package:cubiterasoft/Task8/View/Screens/viewNotes.dart';
-import 'package:cubiterasoft/Task8/View_Model/Utils/Utils/EndPoints.dart';
-import 'package:cubiterasoft/Task8/View_Model/Utils/bloc/Login/LoginCubit.dart';
-import 'package:cubiterasoft/Task8/View_Model/Utils/bloc/Note/NoteCubit.dart';
-import 'package:cubiterasoft/Task8/View_Model/Utils/bloc/Signup/SignupCubit.dart';
-import 'package:cubiterasoft/Task8/View_Model/Utils/data/Local/SharedPref.dart';
-import 'package:cubiterasoft/Task8/View_Model/Utils/data/Network/dioHelper.dart';
+import 'package:cubiterasoft/Dark%20ToDo%20App/View/Screens/Login.dart';
+import 'package:cubiterasoft/Dark%20ToDo%20App/View/Screens/splashScreen.dart';
+import 'package:cubiterasoft/Dark%20ToDo%20App/View/Screens/viewNotes.dart';
+import 'package:cubiterasoft/Dark%20ToDo%20App/View_Model/Utils/Utils/EndPoints.dart';
+import 'package:cubiterasoft/Dark%20ToDo%20App/View_Model/Utils/bloc/Login/LoginCubit.dart';
+import 'package:cubiterasoft/Dark%20ToDo%20App/View_Model/Utils/bloc/Note/NoteCubit.dart';
+import 'package:cubiterasoft/Dark%20ToDo%20App/View_Model/Utils/bloc/Signup/SignupCubit.dart';
+import 'package:cubiterasoft/Dark%20ToDo%20App/View_Model/Utils/data/Local/SharedPref.dart';
+import 'package:cubiterasoft/Dark%20ToDo%20App/View_Model/Utils/data/Network/dioHelper.dart';
 import 'package:cubiterasoft/Task_9/bloc/TaskCubit.dart';
 //import 'package:cubiterasoft/Task_6/massengerScreen.dart';
 //import 'package:cubiterasoft/Task_6/welcomeScreen.dart';
@@ -53,8 +53,8 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         home: 
         //Login(),
-        viewNotes(isFilter: false,),
-        //SplashScreen(),
+        //viewNotes(isFilter: false),
+        SplashScreen(),
       ),
     );
   }
