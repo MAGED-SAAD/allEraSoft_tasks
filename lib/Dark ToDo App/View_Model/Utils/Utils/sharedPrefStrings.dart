@@ -5,6 +5,7 @@ class SharedStrins {
   static String UserId = "UserId";
 
   static String UserName = "UserName";
+  static String time = "time";
 
 
 }

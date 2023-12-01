@@ -26,6 +26,9 @@ class LoginCubit extends Cubit<LoginCubitStates> {
         key: SharedStrins.UserName, value: value!.data["data"]["user"]["name"]);
     SharedPref.setData(
         key: SharedStrins.UserId, value: value!.data["data"]["user"]["id"]);
+
+    SharedPref.setData(key: SharedStrins.time, value: DateTime.now().hour);
+    
   }
 
   Future<void> Login() async {

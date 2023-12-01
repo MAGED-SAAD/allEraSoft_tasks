@@ -22,10 +22,10 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
 
     Future.delayed(
-      const Duration(seconds: 6),
+      const Duration(seconds: 5),
       () {
-        if (SharedPref.getData(key: SharedStrins.UserId) != null) {
-          Navigator.push(
+        if (SharedPref.getData(key: SharedStrins.UserId) != null &&SharedPref.getData(key: SharedStrins.time)==DateTime.now().hour) {
+          Navigator.pushReplacement(
               context,
               MaterialPageRoute(
                 builder: (context) => const viewNotes(
@@ -33,7 +33,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 ),
               ));
         } else {
-          Navigator.push(
+          Navigator.pushReplacement(
               context,
               MaterialPageRoute(
                 builder: (context) => const Login(),
