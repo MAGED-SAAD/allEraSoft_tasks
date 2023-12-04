@@ -46,6 +46,7 @@ dependencies:
   lottie: ^2.7.0
   sizer: ^2.0.15
   syncfusion_flutter_charts: ^23.1.44
+  firebase_core: ^2.24.0
 
   
 

@@ -9,18 +9,22 @@ import 'package:cubiterasoft/Dark%20ToDo%20App/View_Model/Utils/bloc/Signup/Sign
 import 'package:cubiterasoft/Dark%20ToDo%20App/View_Model/Utils/data/Local/SharedPref.dart';
 import 'package:cubiterasoft/Dark%20ToDo%20App/View_Model/Utils/data/Network/dioHelper.dart';
 import 'package:cubiterasoft/Task_9/bloc/TaskCubit.dart';
+import 'package:cubiterasoft/firebase_options.dart';
 //import 'package:cubiterasoft/Task_6/massengerScreen.dart';
 //import 'package:cubiterasoft/Task_6/welcomeScreen.dart';
 import 'package:cubiterasoft/testt/bloc/Counter_bloc/Counter_cubit.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 //import 'package:cubiterasoft/testt/bloc/counterScreen.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-void main() {
+void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+);
   SharedPref.init_SharedPref();
   DioHelper.init();
   
