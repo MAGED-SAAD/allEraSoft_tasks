@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_literals_to_create_immutables
+
 import 'package:cubiterasoft/Dark%20ToDo%20App/View/Components/ExplainTaskState.dart';
 import 'package:cubiterasoft/Dark%20ToDo%20App/View/Components/MessageScaffold.dart';
 import 'package:cubiterasoft/Dark%20ToDo%20App/View/Components/My_circular_progress.dart';
@@ -103,25 +105,35 @@ class viewNotes extends StatelessWidget {
               ),
             ),
           ),
+
+
+
+
+
           body: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
               child: Column(
                 children: [
+
+
                   const ExplainTaskState(),
+                  
                   BlocConsumer<NoteCubit, NoteStates>(
                     builder: (context, state) {
                       if (state is IsLoading) {
                         return const My_circular_progress();
                       } else {
+                        // ignore: prefer_const_constructors
                         return Column(
                           children: [
                             const SizedBox(
                               height: 15,
                             ),
                             const Note_Builder(),
-                            if (NoteCubit.getObject(context).dispalayMore ??
-                                false)
+
+                            /*
+                            if (NoteCubit.getObject(context).dispalayMore ??false)
                               BlocBuilder<NoteCubit, NoteStates>(
                                 builder: (context, state) {
                                   if (state is IsLoadingPagenation) {
@@ -162,6 +174,10 @@ class viewNotes extends StatelessWidget {
                                   }
                                 },
                               ),
+
+
+                              */
+                         
                           ],
                         );
                       }

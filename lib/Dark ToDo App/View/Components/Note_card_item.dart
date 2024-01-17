@@ -2,13 +2,14 @@ import 'package:cubiterasoft/Dark%20ToDo%20App/Model/tasksModel.dart';
 import 'package:cubiterasoft/Dark%20ToDo%20App/View_Model/Utils/bloc/Note/NoteCubit.dart';
 import 'package:flutter/material.dart';
 
+import '../../Model/TaskFirebaseModel.dart';
 import 'BackGroundNote.dart';
 import 'NoteContent.dart';
 
 class Note_card_item extends StatelessWidget {
 
   final void Function()? ontap;
-  final Tasks Note;
+  final TaskFirebaseModel Note;
   
    Note_card_item({
     required this.Note,

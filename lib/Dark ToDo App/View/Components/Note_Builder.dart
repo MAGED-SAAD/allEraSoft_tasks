@@ -20,25 +20,20 @@ class Note_Builder extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<NoteCubit, NoteStates>(
       builder: (context, state) {
-        if (state is IsLoading||NoteCubit.getObject(context).tasksModelObject==null) {
+        if (state is IsLoading) {
           return const Center(
               child: CircularProgressIndicator(
             color: AppColors.whitee,
           ));
         } else {
-          if (NoteCubit.getObject(context).tasksModelObject!
-              .data!
-              .tasks!
-              .isEmpty) {
+          if (NoteCubit.getObject(context).tasksListFirebase ==[]) {
             return const showitsEmpty();
           } else {
             return ListView.separated(
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               itemCount: NoteCubit.getObject(context)
-                  .tasksModelObject!
-                  .data!
-                  .tasks!
+                  .tasksListFirebase
                   .length,
               separatorBuilder: (context, index) {
                 return  const SizedBox(
@@ -49,16 +44,16 @@ class Note_Builder extends StatelessWidget {
                 return Note_card_item(
                   ontap: () {
 
-                    int? taskId = NoteCubit.getObject(context).tasksModelObject!.data!.tasks![index].id;
-
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => EditNoteScreen(objectIndex:taskId ),
-                        ));
+                    String? taskId = NoteCubit.getObject(context).tasksListFirebase[index].taskId;
+                    print("Task id Clicked=$taskId");
+                    // Navigator.push(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //       builder: (context) => EditNoteScreen(objectIndex:taskId ),
+                    //     ));
                   
                   },
-                  Note: NoteCubit.getObject(context).tasksModelObject!.data!.tasks![index],
+                  Note: NoteCubit.getObject(context).tasksListFirebase[index],
                 );
               },
             );

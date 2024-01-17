@@ -6,6 +6,7 @@ import 'package:cubiterasoft/Dark%20ToDo%20App/View/Screens/viewNotes.dart';
 import 'package:cubiterasoft/Dark%20ToDo%20App/View_Model/Utils/bloc/Note/NoteStates.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sizer/sizer.dart';
 import '../../View_Model/Utils/Utils/appColors.dart';
 import '../../View_Model/Utils/bloc/Note/NoteCubit.dart';
 import '../Components/NoteStatusBuilder.dart';
@@ -53,6 +54,7 @@ class EditNoteScreen extends StatelessWidget {
                             height: 15,
                           ),
                           const View_Full_Title_AndSub(),
+                          
                           const SizedBox(
                             height: 15,
                           ),
@@ -61,16 +63,26 @@ class EditNoteScreen extends StatelessWidget {
                                   NoteCubit.getObject(context).timeFromcont,
                               timeToCont:
                                   NoteCubit.getObject(context).timeTocont),
+                                  
                           const SizedBox(
                             height: 15,
                           ),
                           const NoteStatusBuilder(),
                           if (NoteCubit.getObject(context).taskImage != null)
-                            Image.network(
-                              NoteCubit.getObject(context).taskImage!,
-                              height: 100,
-                              width: 100,
-                              fit: BoxFit.cover,
+                            Container(
+                              padding:const EdgeInsets.all(3),
+                              decoration:BoxDecoration(
+                                border:Border.all(
+                                  color: AppColors.whitee,
+                                  width: 2
+                                )
+                              ),
+                              child: Image.network(
+                                NoteCubit.getObject(context).taskImage!,
+                                height: 20.h,
+                                width: 90.w,
+                                fit: BoxFit.cover,
+                              ),
                             ),
                           const Spacer(),
                           Align(

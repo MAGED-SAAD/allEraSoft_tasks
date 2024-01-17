@@ -24,7 +24,8 @@ class _SplashScreenState extends State<SplashScreen> {
     Future.delayed(
       const Duration(seconds: 5),
       () {
-        if (SharedPref.getData(key: SharedStrins.UserId) != null &&SharedPref.getData(key: SharedStrins.time)==DateTime.now().hour) {
+        print(SharedStrins.userIdFirebase);
+        if (SharedPref.getData(key: SharedStrins.userIdFirebase) != null) {
           Navigator.pushReplacement(
               context,
               MaterialPageRoute(

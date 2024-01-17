@@ -20,11 +20,15 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'Dark ToDo App/View_Model/Utils/Utils/blocObserver.dart';
+
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
+  Bloc.observer = MyBlocObserver();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
-);
+  );
+
   SharedPref.init_SharedPref();
   DioHelper.init();
   
@@ -50,7 +54,7 @@ class MyApp extends StatelessWidget {
             ..get_Pokemon_data(
               EndPoint: EndPoints.PokemonUrl,
             ),
-        )
+        ),
       ],
       child: const MaterialApp(
         debugShowCheckedModeBanner: false,

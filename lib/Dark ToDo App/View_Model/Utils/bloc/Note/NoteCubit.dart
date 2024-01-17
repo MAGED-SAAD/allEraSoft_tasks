@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_null_aware_operators
 
 import 'package:bloc/bloc.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cubiterasoft/Dark%20ToDo%20App/Model/TaskFirebaseModel.dart';
 import 'package:cubiterasoft/Dark%20ToDo%20App/Model/tasksModel.dart';
 import 'package:cubiterasoft/Dark%20ToDo%20App/View_Model/Utils/Utils/EndPoints.dart';
 import 'package:cubiterasoft/Dark%20ToDo%20App/View_Model/Utils/Utils/sharedPrefStrings.dart';
@@ -34,57 +36,27 @@ class NoteCubit extends Cubit<NoteStates> {
     return (BlocProvider.of<NoteCubit>(context));
   }
 
-  TasksModel? tasksModelObject;
+ final List <TaskFirebaseModel> tasksListFirebase=[];
 
   bool? dispalayMore = false;
   int currentPageNum = 1;
 
-
-
-  Future<Response>? getAllNotes({required bool isFilter}) {
-    print('MMMMMMMMMMMMMMMMMMMMMMMM Api Get All Tasks MMMMMMMMMMMMMMMMMMMMMMMMMMMM');
+  Future<void>? getAllNotes({required bool isFilter}) async {
+    print('MMMMMMMMMMMMMMMMMMMMMMMM Api Get All Tasks Firbase MMMMMMMMMMMMMMMMMMMMMMMMMMMM');
     emit(IsLoading());
 
-    print(SharedPref.dateTo);
-    print(SharedPref.status);
-
-    DioHelper.get(endPoint: 
-    isFilter?
-    EndPoints.getFilterTasks
-    :
-    EndPoints.getAlltasks, 
-   
-   
-    Prams: {
-      "to": SharedPref.dateTo == null||SharedPref.dateTo == ""
-          ? null
-          : SharedPref.dateTo.toString().substring(0, 10),
-      "from": SharedPref.datefrom == null||SharedPref.datefrom == ""
-          ? null
-          : SharedPref.datefrom.toString().substring(0, 10),
-      "status": SharedPref.status,
-    }
-    
-    
-    ).then((value) {
-
-      tasksModelObject = TasksModel.fromJson(value?.data);
-      if (tasksModelObject!.data!.meta!.currentPage !=
-          tasksModelObject!.data!.meta!.lastPage) {
-        dispalayMore = true;
+    await FirebaseFirestore.instance
+        .collection(SharedStrins.Tasks)
+        .get()
+        .then((value) {
+      for (var i in value.docs) {
+        tasksListFirebase.add(TaskFirebaseModel.fromjson(map: i.data(),taskkid:i.id ));
       }
-
-      print(value);
       emit(DataGetSuccess());
     }).catchError((onError) {
       emit(GetDataFailed(error: onError.toString()));
     });
-    return null;
   }
-
-
-
-
 
   Color taskColor({required String Status}) {
     if (Status == "outdated") {
@@ -99,28 +71,43 @@ class NoteCubit extends Cubit<NoteStates> {
   }
 
   Future<void> addNewNote() async {
-    print('MMMMMMMMMMMMMMMMMMMMMMMM Api Add New  Tasks MMMMMMMMMMMMMMMMMMMMMMMMMMMM');
+    print(
+        'MMMMMMMMMMMMMMMMMMMMMMMM Api Add New  Tasks MMMMMMMMMMMMMMMMMMMMMMMMMMMM');
 
     emit(IsLoading());
 
-    await DioHelper.post(
-      data: {
-        'files': "null",
-        'title': titleCont.text,
-        'description': subTitleCont.text,
-        'start_date': timeFromcont.text.toString().substring(0, 10),
-        'end_date': timeTocont.text.toString().substring(0, 10),
-        'status': noteStatus,
-      },
-      headers: {"Authorization": "Bearer ${DioHelper.currentToken}"},
-      endPoint: EndPoints.addNewNote,
-      // Token: SharedPref.getData(key: SharedStrins.Token),
-    ).then((value) {
-      print(value);
+    await FirebaseFirestore.instance.collection(SharedStrins.Tasks).doc().set({
+      'files': "null",
+      'title': titleCont.text,
+      'description': subTitleCont.text,
+      'start_date': timeFromcont.text.toString().substring(0, 10),
+      'end_date': timeTocont.text.toString().substring(0, 10),
+      'status': noteStatus,
+      'userId_firebase': DioHelper.currentUserId ?? SharedStrins.userIdFirebase,
+    }).then((value) {
       emit(AddNewNoteSuccess());
     }).catchError((onError) {
       emit(GetDataFailed(error: onError.toString()));
     });
+
+    // await DioHelper.post(
+    //   data: {
+    //     'files': "null",
+    //     'title': titleCont.text,
+    //     'description': subTitleCont.text,
+    //     'start_date': timeFromcont.text.toString().substring(0, 10),
+    //     'end_date': timeTocont.text.toString().substring(0, 10),
+    //     'status': noteStatus,
+    //   },
+    //   headers: {"Authorization": "Bearer ${DioHelper.currentUserId}"},
+    //   endPoint: EndPoints.addNewNote,
+    //   // Token: SharedPref.getData(key: SharedStrins.Token),
+    // ).then((value) {
+    //   print(value);
+    //   emit(AddNewNoteSuccess());
+    // }).catchError((onError) {
+    //   emit(GetDataFailed(error: onError.toString()));
+    // });
   }
 
   // ignore: non_constant_identifier_names
@@ -203,7 +190,7 @@ class NoteCubit extends Cubit<NoteStates> {
         'end_date': timeTocont.text.toString().substring(0, 10),
         'status': noteStatus,
       },
-      headers: {"Authorization": "Bearer ${DioHelper.currentToken}"},
+      headers: {"Authorization": "Bearer ${DioHelper.currentUserId}"},
       endPoint: "${EndPoints.getAlltasks}/$id",
       // Token: SharedPref.getData(key: SharedStrins.Token),
     ).then((value) {
@@ -214,6 +201,7 @@ class NoteCubit extends Cubit<NoteStates> {
     });
   }
 
+/*
   TasksModel? tasksModelObjectPagenation;
 
   Future<Response>? getAllNotesPagenation() {
@@ -245,4 +233,5 @@ class NoteCubit extends Cubit<NoteStates> {
     });
     return null;
   }
+*/
 }
